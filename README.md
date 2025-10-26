@@ -2,7 +2,7 @@
 
 > Academic project developed for the course **Desarrollo de Software en Equipo (ISIS2603)**  
 > Universidad de los Andes – 2023  
-> Technologies: **Java Spring Boot + Angular + Jenkins + SonarQube + GitHub Actions**
+> Technologies: **Java Spring Boot + Angular + Jenkins + SonarQube**
 
 ---
 
@@ -24,7 +24,7 @@ The project demonstrates teamwork, software engineering best practices, and cont
 - 💾 Data persistence implemented using **JPA/Hibernate**.  
 - 🌐 Frontend developed with **Angular**, integrated with REST APIs.  
 - 🧪 Unit and integration tests for backend and frontend.  
-- ⚙️ CI/CD pipelines implemented with **GitHub Actions** and **Jenkins**.  
+- ⚙️ CI/CD pipelines implemented with **Jenkins**.  
 - 📊 Code quality analyzed through **SonarQube**.
 
 ---
@@ -88,3 +88,13 @@ API runs on 👉 `http://localhost:8080`
 
 ---
 
+## 👥 Team Members
+
+| Team Members |
+|---------------|
+| Federico Augusto Bogota Ortiz |
+| Laura Julieth Carretero Serrano |
+| Maria Fernanda De La Hoz |
+| Juan David Rios Nisperuza |
+| Luis Fernando Ruiz Ortega |
+| Santiago Tinjaca Roncancio |
