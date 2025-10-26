@@ -1,0 +1,43 @@
+<!-- Navigation bar -->
+<div class="main-container">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--rich-black-fogra-29);">
+    <div class="container">
+      <a class="navbar-brand" routerLink="/principal/list">
+        <img src="../assets/images/premiaciones/logo.png" alt="" style="width: 100px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/principal/list">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/peliculas/list">Peliculas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/premiacion/list">Premiaciones</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/plataformas/list">Plataformas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/personas/actores/listar">Actores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/personas/directores/listar">Directores</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+
+<div class="row">
+  <router-outlet></router-outlet>
+</div>
+
+
+</div>

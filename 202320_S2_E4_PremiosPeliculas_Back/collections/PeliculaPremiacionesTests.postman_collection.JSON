@@ -1,0 +1,498 @@
+{
+	"info": {
+		"_postman_id": "3409a297-8b48-4605-b4d7-49be345310b5",
+		"name": "PeliculaPremiaciones Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29281463"
+	},
+	"item": [
+		{
+			"name": "Crear una premiacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"premiacion_id_1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categoria\": \"Mejor Pelicula\",\r\n    \"historia\": \"La mejor pelicula se le entrega a aquellas peliculas que cumple con...\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una premiacion 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"premiacion_id_2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categoria\": \"Mejor Pelicula\",\r\n    \"historia\": \"La mejor pelicula se le entrega a aquellas peliculas que cumple con...\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una pelicula",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"pelicula_id_1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"pedro y sus aventuras\",\r\n    \"duracion\": 70,\r\n    \"pais\": \"Colombia\",\r\n    \"idiomaOriginal\": \"Español\",\r\n    \"fechaEstreno\": \"1927-03-03T00:00:00-05:00\",\r\n    \"linkTrailer\": \"http:pedro_aventuras.com\"\r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/peliculas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar una premiacion a una pelicula",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/peliculas/{{pelicula_id_1}}/premiaciones/{{premiacion_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas",
+						"{{pelicula_id_1}}",
+						"premiaciones",
+						"{{premiacion_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar una premiacion que no existe a una pelicula",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"Premiacion no encontrada\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/peliculas/{{pelicula_id_1}}/premiaciones/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas",
+						"{{pelicula_id_1}}",
+						"premiaciones",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una premiacion de una pelicula",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/peliculas/{{pelicula_id_1}}/premiaciones/{{premiacion_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas",
+						"{{pelicula_id_1}}",
+						"premiaciones",
+						"{{premiacion_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una premiacion que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"premiacion no encontrada\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/peliculas/{{pelicula_id_1}}/premiaciones/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas",
+						"{{pelicula_id_1}}",
+						"premiaciones",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar premiaciones a una pelicula",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n     {\r\n        \"categoria\": \"Mejor Actor\",\r\n        \"historia\" : \"El premio al mejor actor se le entrega a aquellos que...\",\r\n        \"id\": {{premiacion_id_1}}\r\n    },\r\n    {\r\n        \"categoria\": \"Mejor Pelicula\",\r\n        \"historia\": \"La mejor pelicula se le entrega a aquellas peliculas que cumple con...\",\r\n        \"id\": {{premiacion_id_2}}   \r\n    }\r\n   \r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/peliculas/{{pelicula_id_1}}/premiaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas",
+						"{{pelicula_id_1}}",
+						"premiaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar premiaciones a una pelicula que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"Pelicula no encontrada\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n     {\r\n        \"categoria\": \"Mejor Actor\",\r\n        \"historia\" : \"El premio al mejor actor se le entrega a aquellos que...\",\r\n        \"id\": {{premiacion_id_1}}\r\n    },\r\n    {\r\n        \"categoria\": \"Mejor Pelicula\",\r\n        \"historia\": \"La mejor pelicula se le entrega a aquellas peliculas que cumple con...\",\r\n        \"id\": {{premiacion_id_2}}   \r\n    }\r\n   \r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/peliculas/0/premiaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas",
+						"0",
+						"premiaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener las premiaciones de una pelicula",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of premiaciones > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/peliculas/{{pelicula_id_1}}/premiaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas",
+						"{{pelicula_id_1}}",
+						"premiaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una premiacion a una pelicula",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/peliculas/{{pelicula_id_1}}/premiaciones/{{premiacion_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas",
+						"{{pelicula_id_1}}",
+						"premiaciones",
+						"{{premiacion_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar premiacion a una pelicula 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/peliculas/{{pelicula_id_1}}/premiaciones/{{premiacion_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas",
+						"{{pelicula_id_1}}",
+						"premiaciones",
+						"{{premiacion_id_2}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,498 @@
+{
+	"info": {
+		"_postman_id": "e4d796c7-be48-42f8-82fe-edac8a50b773",
+		"name": "PeliculaPlataforma Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29281463"
+	},
+	"item": [
+		{
+			"name": "Crear una plataforma 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"plataforma_id_1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Netflix\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/plataformas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"plataformas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una plataforma 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"plataforma_id_2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Hulu\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/plataformas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"plataformas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una pelicula",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"pelicula_id_1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"pedro y sus aventuras\",\r\n    \"duracion\": 70,\r\n    \"pais\": \"Colombia\",\r\n    \"idiomaOriginal\": \"Español\",\r\n    \"fechaEstreno\": \"1927-03-03T00:00:00-05:00\",\r\n    \"linkTrailer\": \"http:pedro_aventuras.com\"\r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/peliculas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar una plataforma a  una pelicula",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/peliculas/{{pelicula_id_1}}/plataformas/{{plataforma_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas",
+						"{{pelicula_id_1}}",
+						"plataformas",
+						"{{plataforma_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar una plataforma que no existe a una pelicula",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"Plataforma no encontrada\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/peliculas/{{pelicula_id_1}}/plataformas/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas",
+						"{{pelicula_id_1}}",
+						"plataformas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una plataforma de una pelicula",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/peliculas/{{pelicula_id_1}}/plataformas/{{plataforma_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas",
+						"{{pelicula_id_1}}",
+						"plataformas",
+						"{{plataforma_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una plataforma que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"Plataforma no encontrada\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/peliculas/{{pelicula_id_1}}/plataformas/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas",
+						"{{pelicula_id_1}}",
+						"plataformas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar plataformas a una pelicula",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n     {\r\n         \r\n        \"nombre\": \"Netflix\",\r\n        \"id\": {{plataforma_id_1}}\r\n    },\r\n    {\r\n        \"nombre\": \"Hulu\",\r\n        \"id\": {{plataforma_id_2}}   \r\n    }\r\n   \r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/peliculas/{{pelicula_id_1}}/plataformas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas",
+						"{{pelicula_id_1}}",
+						"plataformas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar plataformas a una pelicula que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"Pelicula no encontrada\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n     {\r\n         \r\n        \"nombre\": \"Netflix\",\r\n        \"id\": {{plataforma_id_1}}\r\n    },\r\n    {\r\n        \"nombre\": \"Hulu\",\r\n        \"id\": {{plataforma_id_2}}   \r\n    }\r\n   \r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/peliculas/0/plataformas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas",
+						"0",
+						"plataformas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener las plataformas de una pelicula",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of plataformas > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/peliculas/{{pelicula_id_1}}/plataformas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas",
+						"{{pelicula_id_1}}",
+						"plataformas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una plataforma a una pelicula",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/peliculas/{{pelicula_id_1}}/plataformas/{{plataforma_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas",
+						"{{pelicula_id_1}}",
+						"plataformas",
+						"{{plataforma_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar plataforma a una pelicula 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/peliculas/{{pelicula_id_1}}/plataformas/{{plataforma_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas",
+						"{{pelicula_id_1}}",
+						"plataformas",
+						"{{plataforma_id_2}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

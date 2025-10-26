@@ -1,0 +1,23 @@
+<div class="row justify-content-md-center">
+  <div class="col-9">
+    <div
+      class="card DataPerson mb-3 text-light"
+      style="background-color: var(--oxford-blue)"
+    >
+      <div class="card-body">
+        <h2 class="card-title text-center">
+          {{ cinefiloDetailDTO.nombre }}
+        </h2>
+        <h3 class="card-title">Reseñas</h3>
+        
+        <p class="card-text" *ngFor="let c of cinefiloDetailDTO.resenias">
+          {{ c.texto }}
+        </p>
+        <h3 class="card-title">Identificador</h3>
+        <p class="card-text">
+          {{ cinefiloDetailDTO.id }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

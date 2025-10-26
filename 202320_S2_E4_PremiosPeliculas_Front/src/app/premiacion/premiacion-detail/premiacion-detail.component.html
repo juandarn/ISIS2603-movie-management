@@ -1,0 +1,184 @@
+<div class="premiacion-detail-modal" *ngIf="isPremiacionPage">
+  <div class="modal-card-layout">
+    <!-- Tarjeta similar a la lista de premiaciones -->
+    <div class="card">
+      <div class="card-image" [ngSwitch]="premiacionDetail.categoria">
+            <img *ngSwitchCase="'Mejor película'" class="image" src="../assets/images/premiaciones/mejor_pelicula.png" alt="Mejor película">
+            <img *ngSwitchCase="'Mejor director'" class="image" src="../assets/images/premiaciones/mejor_director.png" alt="Mejor director">
+            <img *ngSwitchCase="'Mejor actor'" class="image" src="../assets/images/premiaciones/mejor_actor.png" alt="Mejor actor">
+            <img *ngSwitchCase="'Mejor actriz'" class="image" src="../assets/images/premiaciones/mejor_actriz.png" alt="Mejor actriz">
+            <img *ngSwitchCase="'Mejor guión original'" src="../assets/images/premiaciones/mejor_guion.png" class="image"  alt="Mejor guión">
+            <img *ngSwitchDefault class="image" src="../assets/images/premiaciones/premiacion.png" alt="Imagen por defecto">
+      </div>
+      <div class="card-content">
+        <h2 class="card-title">{{ premiacionDetail.categoria }}</h2>
+        <p class="card-text">{{ premiacionDetail.historia }}</p>
+        <p class="card-footer" *ngIf="premiacionDetail.peliculaGanadora; else noWinner">
+          Ganadora: {{ premiacionDetail.peliculaGanadora.nombre }}
+        </p>
+        <ng-template #noWinner>
+          <p class="card-footer">El ganador de esta premiación no es la película.</p>
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="detail-content">
+      <div class="detail-row">
+        <h3>Información de Premios:</h3>
+        <div class="premio-card-container">
+          <ng-container *ngFor="let premio of premiacionDetail.premios">
+            <div class="premio-card">
+              <div class="premio-card-header">
+                <h4>{{ premio.organizacion.nombre }}</h4>
+                <a routerLink="/premios/{{premio.id}}">Ver Más</a>
+              </div>
+              <div class="premio-card-body">
+                <p><strong>País:</strong> {{ premio.pais }}</p>
+                <p><strong>Fecha:</strong> {{ premio.fecha | date:'longDate' }}</p>
+                <p><strong>Premiación:</strong> {{ premio.premiacion.categoria }}</p>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Solo mostrar si el ganador es una película -->
+      <div *ngIf="premiacionDetail.peliculaGanadora" class="detail-row">
+        <h3>Película Ganadora:</h3>
+        <p>{{ premiacionDetail.peliculaGanadora.nombre }}</p>
+        <!-- Información adicional de la película ganadora si es necesario -->
+      </div>
+
+       <!-- Solo mostrar si el ganador no es una película -->
+      <div *ngIf="!premiacionDetail.peliculaGanadora" class="detail-row">
+        <h3>Ganador:</h3>
+        <div class="nominados-container">
+          <ng-container *ngIf="premiacionDetail.nominados && premiacionDetail.nominados.length > 0">
+            <div class="nominado-card">
+              <p>{{ premiacionDetail.nominados[0].persona.nombre}}</p>
+            </div>
+          </ng-container>
+          
+        </div>
+      </div>
+
+      <!-- Solo mostrar nominados si el ganador no es una película -->
+      <div *ngIf="!premiacionDetail.peliculaGanadora" class="detail-row">
+        <h3>Nominados:</h3>
+        <div class="nominados-container">
+          <ng-container *ngFor="let nominado of premiacionDetail.nominados">
+            <div class="nominado-card">
+              <p>{{ nominado.persona.nombre }}</p>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Solo mostrar películas nominadas si el ganador es una película -->
+      <div *ngIf="premiacionDetail.peliculaGanadora" class="detail-row">
+        <h3>Películas Nominadas:</h3>
+        <div class="nominadas-card-container">
+          <ng-container *ngFor="let pelicula of premiacionDetail.peliculas">
+            <div class="nominada-card">
+              <div class="nominada-card-header">
+                <h4>{{ pelicula.nombre }}</h4>
+                <!-- Más información de la película si es necesario -->
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="!isPremiacionPage">
+  <div class="detail-layout-normal">
+    <!-- Contenido de la tarjeta de premiación -->
+    <div class="card-normal">
+      <div class="card-normal" [ngSwitch]="premiacionDetail.categoria">
+            <img *ngSwitchCase="'Mejor película'" class="image" src="../assets/images/premiaciones/mejor_pelicula.png" alt="Mejor película">
+            <img *ngSwitchCase="'Mejor director'" class="image" src="../assets/images/premiaciones/mejor_director.png" alt="Mejor director">
+            <img *ngSwitchCase="'Mejor actor'" class="image" src="../assets/images/premiaciones/mejor_actor.png" alt="Mejor actor">
+            <img *ngSwitchCase="'Mejor actriz'" class="image" src="../assets/images/premiaciones/mejor_actriz.png" alt="Mejor actriz">
+            <img *ngSwitchCase="'Mejor guión original'" src="../assets/images/premiaciones/mejor_guion.png" class="image"  alt="Mejor guión">
+            <img *ngSwitchDefault class="image" src="../assets/images/premiaciones/premiacion.png" alt="Imagen por defecto">
+      </div>
+      <div class="card-content">
+        <h2 class="card-title">{{ premiacionDetail.categoria }}</h2>
+        <p class="card-text">{{ premiacionDetail.historia }}</p>
+      </div>
+    </div>
+
+    <div class="content-normal">
+      <div class="detail-row">
+        <h3>Información de Premios:</h3>
+        <div class="premio-card-container">
+          <ng-container *ngFor="let premio of premiacionDetail.premios">
+            <div class="premio-card">
+              <div class="premio-card-header">
+                <h4>{{ premio.organizacion.nombre }}</h4>
+                <a routerLink="/premios/{{premio.id}}">Ver Más</a>
+              </div>
+              <div class="premio-card-body">
+                <p><strong>País:</strong> {{ premio.pais }}</p>
+                <p><strong>Fecha:</strong> {{ premio.fecha | date:'longDate' }}</p>
+                <p><strong>Premiación:</strong> {{ premio.premiacion.categoria }}</p>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Solo mostrar si el ganador es una película -->
+      <div *ngIf="premiacionDetail.peliculaGanadora" class="detail-row">
+        <h3>Película Ganadora:</h3>
+        <p>{{ premiacionDetail.peliculaGanadora.nombre }}</p>
+        <!-- Información adicional de la película ganadora si es necesario -->
+      </div>
+
+       <!-- Solo mostrar si el ganador no es una película -->
+      <div *ngIf="!premiacionDetail.peliculaGanadora" class="detail-row">
+        <h3>Ganador:</h3>
+        <div class="nominados-container">
+          <ng-container *ngIf="premiacionDetail.nominados && premiacionDetail.nominados.length > 0">
+            <div class="nominado-card">
+              <p>{{ premiacionDetail.nominados[0].persona.nombre}}</p>
+            </div>
+          </ng-container>
+          
+        </div>
+      </div>
+
+      <!-- Solo mostrar nominados si el ganador no es una película -->
+      <div *ngIf="!premiacionDetail.peliculaGanadora" class="detail-row">
+        <h3>Nominados:</h3>
+        <div class="nominados-container">
+          <ng-container *ngFor="let nominado of premiacionDetail.nominados">
+            <div class="nominado-card">
+              <p>{{ nominado.persona.nombre }}</p>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Solo mostrar películas nominadas si el ganador es una película -->
+      <div *ngIf="premiacionDetail.peliculaGanadora" class="detail-row">
+        <h3>Películas Nominadas:</h3>
+        <div class="nominadas-card-container">
+          <ng-container *ngFor="let pelicula of premiacionDetail.peliculas">
+            <div class="nominada-card">
+              <div class="nominada-card-header">
+                <h4>{{ pelicula.nombre }}</h4>
+                <!-- Más información de la película si es necesario -->
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+
+

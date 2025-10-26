@@ -1,0 +1,28 @@
+<div class="organizacion-detail-container">
+  <div class="organizacion-detail-card">
+    <h2>Detalles de la Reseña</h2>
+    <div class="organizacion-detail-item">
+      <span class="organizacion-label">ID:</span>
+      <span class="organizacion-value">{{ reseniaDetalle.id }}</span>
+    </div>
+    <div class="organizacion-detail-item">
+      <span class="organizacion-label">Nombre:</span>
+      <span class="organizacion-value">{{ reseniaDetalle.cinefilo.nombre}}</span>
+    </div>
+    <div class="organizacion-detail-item">
+      <span class="organizacion-label">Pelicula:</span>
+      <span class="organizacion-value">{{ reseniaDetalle.pelicula.nombre}}</span>
+    </div>
+    <div class="organizacion-detail-item">
+      <span class="organizacion-label">Organizacion del premio:</span>
+      <span class="organizacion-value">{{ reseniaDetalle.premio.organizacion.nombre}}</span>
+    </div>
+    <div class="organizacion-detail-item">
+      <span class="organizacion-label">Texto:</span>
+      <span class="organizacion-value">{{ reseniaDetalle.texto}}</span>
+    </div>
+    <!-- Botón para volver -->
+    <button class="btn-volver" routerLink="/principal/list">Volver</button>
+  </div>
+</div>
+

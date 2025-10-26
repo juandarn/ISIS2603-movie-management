@@ -1,0 +1,34 @@
+<div class="premio-detail-container">
+  <div class="premio-detail-card">
+    <h2>Detalles del Premio</h2>
+    <div class="premio-detail-item">
+      <span class="premio-label">ID:</span>
+      <span class="premio-value">{{ premioDetalle.id }}</span>
+    </div>
+    <div class="premio-detail-item">
+      <span class="premio-label">Fecha:</span>
+      <span class="premio-value">{{ premioDetalle.fecha | date:'longDate' }}</span>
+    </div>
+    <div class="premio-detail-item">
+      <span class="premio-label">País:</span>
+      <span class="premio-value">{{ premioDetalle.pais }}</span>
+    </div>
+    <div class="premio-detail-item">
+      <span class="premio-label">Organización:</span>
+      <div class="premio-organizacion">
+        <ng-container><a routerLink="/organizacion/{{premioDetalle.organizacion.id}}" class="premio-organizacion-link">{{ premioDetalle.organizacion.nombre }}</a></ng-container>
+      </div>
+
+    </div>
+    <div class="premio-detail-item">
+      <span class="premio-label">Reseñas:</span>
+      <div class="premio-resenias">
+        <ng-container *ngFor="let resenia of premioDetalle.resenias">
+          <a routerLink="/resenias/{{resenia.id}}" class="premio-resenia-link">{{resenia.texto}}</a>
+        </ng-container>
+      </div>
+    </div>
+    <!-- Botón para volver -->
+    <button class="btn-volver" routerLink="/premiacion/list">Volver</button>
+  </div>
+</div>

@@ -1,0 +1,122 @@
+  <!-- Featured Movie Component -->
+  <section class="banner">
+    <div class="banner-card container-fluid">
+      <div *ngFor="let movie of movies.slice(1, 2)" >
+      <a [routerLink]="['/peliculas', movie.id]">
+      <img src="../../assets/images/premiaciones/star-wars-return-of-the-jedi-4k-5p.jpg" class="banner-img" alt="">
+      </a>
+  
+      <div class="card-content">
+        <div class="card-info">
+
+          <div class="year">
+            <i class="bi bi-calendar"></i>
+            <span>{{ getYearFromReleaseDate(movie.fechaEstreno) }}</span>
+          </div>
+  
+          <div class="duration">
+            <i class="bi bi-clock"></i>
+            <span>{{movie.duracion}}</span>
+          </div>
+  
+        </div>
+  
+        <h2 class="card-title">{{ movie.nombre }}</h2>
+      </div>  
+      </div>
+
+    </div>
+  </section>
+  
+
+
+<!-- movies.component.html -->
+
+
+<div class="container">
+<h3 class="titulo">Peliculas destacadas:</h3>
+<div class="container tarjetas d-flex flex-wrap">
+  <div *ngFor="let movie of movies.slice(0, 5)" class="card">
+    <a [routerLink]="['/peliculas', movie.id]">
+    <img [src]="movie.imagen" class="card-img-top" alt="{{ movie.nombre }}">
+    </a>
+    <div class="card-body">
+      <p class="card-nombre">{{ movie.nombre }}</p>
+      <p class="card-text">{{ getYearFromReleaseDate(movie.fechaEstreno) }}</p>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+<div class="container-filtro-genero">
+  <div class="header-bar">
+    <h3 class="titulo">Géneros:</h3>
+    <div class="filtro-genero">
+      <div class="search-bar">
+        <select id="order-select" (change)="setOrdenacionGenero($event)">
+          <option value="">Ordenar por</option>
+          <option value="asc">A-Z</option>
+          <option value="desc">Z-A</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+<div class="container">
+  <div class="container tarjetas d-flex flex-wrap">
+    <div *ngFor="let movie of generos" class="card">
+      <a [routerLink]="['/generos', movie.id]">
+      <img [src]="movie.imagen" class="card-img-top" alt="{{ movie.nombre }}">
+    </a>
+      <div class="card-body">
+        <p class="card-nombre">{{ movie.nombre }}</p>
+        <p class="card-text">{{ getCantidadPeliculasPorGenero(movie.id) }}</p>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+  <div class="container">
+    <h3 class="titulo">Plataformas:</h3>
+    <div class="container tarjetas d-flex flex-wrap">
+      <div *ngFor="let movie of plataformas" class="card">
+        <a [routerLink]="['/plataformas', movie.id]">
+        <img [src]="movie.imagen" class="card-img-top" alt="{{ movie.nombre }}">
+      </a>
+        <div class="card-body">
+          <p class="card-nombre">{{ movie.nombre }}</p>
+          <p class="card-text">{{ getCantidadPeliculasPorPlataforma( movie.id) }}</p>
+        </div>
+      </div>
+    </div>
+    </div>
+
+<!-- Info Containers -->
+
+
+<h1 class="titulo-contenedores">Premiaciones</h1>
+<div class="info-container-premiaciones">
+  <app-premiacion-listar></app-premiacion-listar>
+</div>
+
+<h1 class="titulo-contenedores">Actores</h1>
+<div class="info-container-personas">
+  <app-actor-listar></app-actor-listar>
+</div>
+
+<h1 class="titulo-contenedores">Directores</h1>
+<div class="info-container-personas">
+  <app-director-listar></app-director-listar>
+</div>
+
+

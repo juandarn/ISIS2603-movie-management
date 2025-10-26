@@ -1,0 +1,292 @@
+{
+	"info": {
+		"_postman_id": "78e4d5c2-5751-477e-a258-4ac71a30b3b6",
+		"name": "PlataformaTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29281547"
+	},
+	"item": [
+		{
+			"name": "Crear plataforma",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"plataforma_id_1\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\":\"Netflix\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/plataformas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"plataformas"
+					]
+				},
+				"description": "Crea una nueva plataforma. El recurso solo tiene de atributo \"name\" que debe ser único. El Id es inicializado por la BD y se debe ver en la respuesta.\n\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una plataforma",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/plataformas/{{plataforma_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"plataformas",
+						"{{plataforma_id_1}}"
+					]
+				},
+				"description": "Consulta la plataforma de una película en la aplicación.  \nLa petición no tiene cuerpo.\n\nSe envía el Id de la plataforma a consultar en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las plataformas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of plataformas > ' + 0, function () {",
+							"   var data = pm.response.json()",
+							"   pm.expect(data.length).to.greaterThan(0)",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/plataformas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"plataformas"
+					]
+				},
+				"description": "Consulta todas las plataformas de películas en la aplicación.  \nLa petición no tiene cuerpo.\n\nPara la prueba, se verifica que el conjunto de autores en la respuesta tenga mas de uno.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Editar una plataforma",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\":\"HBO\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/plataformas/{{plataforma_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"plataformas",
+						"{{plataforma_id_1}}"
+					]
+				},
+				"description": "Actualiza una plataforma existente.  \nse envía el Id en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Editar una plataforma que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"Plataforma no encontrada\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\":\"Teatro\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/plataformas/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"plataformas",
+						"0"
+					]
+				},
+				"description": "Actualiza una plataforma que no existe.\n\nPara la prueba se verifica que se genera el error y el mensaje \"Plataforma no existente\".\n\n**Código HTTP esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una plataforma",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/plataformas/{{plataforma_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"plataformas",
+						"{{plataforma_id_1}}"
+					]
+				},
+				"description": "Borra un género. Se envía el id del género creado anteriormente.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una plataforma que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"Plataforma no encontrada\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/plataformas/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"plataformas",
+						"0"
+					]
+				},
+				"description": "Borra un género que no existe en la aplicación.\n\nPara la prueba se verifica que se genera el error y el mensaje \"Género no existente\".\n\n**Código http esperado: 404**"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "plataforma_id",
+			"value": "Null"
+		}
+	]
+}

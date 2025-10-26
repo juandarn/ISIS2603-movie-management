@@ -1,0 +1,351 @@
+{
+	"info": {
+		"_postman_id": "0b838b76-b0d3-4d86-93b5-0e6497adaefe",
+		"name": "Persona",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29419990",
+		"_collection_link": "https://galactic-astronaut-69571.postman.co/workspace/pelis~2f6b05d5-46bf-4a32-acae-4a6a44befa8d/collection/29419990-0b838b76-b0d3-4d86-93b5-0e6497adaefe?action=share&source=collection_link&creator=29419990"
+	},
+	"item": [
+		{
+			"name": "Crear Persona",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"persona_id_1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Nombre Apellido\",\r\n    \"nacionalidad\": \"Colombiano\",\r\n    \"fechaNacimiento\": \"1927-03-03T00:00:00-05:00\",\r\n    \"biografia\": \"bibendum at varius vel pharetra vel turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida\",\r\n    \"rol\" : \"Actor\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/personas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"personas"
+					]
+				},
+				"description": "Crea una persona. El Id es inicializado por la BD y se debe ver en la respuesta.  \nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 201**"
+			},
+			"response": [
+				{
+					"name": "Crear Persona",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Nombre Apellido\",\r\n    \"nacionalidad\": \"Colombiano\",\r\n    \"fechaNacimiento\": \"1927-03-03T00:00:00-05:00\",\r\n    \"biografia\": \"bibendum at varius vel pharetra vel turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida\",\r\n    \"rol\" : \"Actor\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/personas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"personas"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": 1,\r\n    \"nombre\": \"Nombre Apellido\",\r\n    \"nacionalidad\": \"Colombiano\",\r\n    \"fechaNacimiento\": \"1927-03-03T05:00:00.000+00:00\",\r\n    \"biografia\": \"bibendum at varius vel pharetra vel turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida\",\r\n    \"rol\": \"Actor\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todas las personas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of personas > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/personas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"personas"
+					]
+				},
+				"description": "Consulta todas las personas de la aplicacion.  \nLa petición no tiene cuerpo.\n\nPara la prueba, se verifica que el conjunto de personas en la respuesta tenga mas de uno.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Persona",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/personas/{{persona_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"personas",
+						"{{persona_id_1}}"
+					]
+				},
+				"description": "Consulta la persona que esta representada con ese id.  \nLa petición no tiene cuerpo.\n\nPara la prueba, se verifica que la persona exista.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Persona no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"Persona no encontada para obtenerla\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/personas/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"personas",
+						"0"
+					]
+				},
+				"description": "Intenta consultar una persona que no existe  \nLa petición no tiene cuerpo.\n\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Persona",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Nombre Apellido\",\r\n    \"nacionalidad\": \"Colombiano\",\r\n    \"fechaNacimiento\": \"1927-03-03T00:00:00-05:00\",\r\n    \"biografia\": \"bibendum at varius vel pharetra vel turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida\",\r\n    \"rol\" : \"director\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/personas/{{persona_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"personas",
+						"{{persona_id_1}}"
+					]
+				},
+				"description": "Actualiza una persona existente.  \nse envía el Id en la URL de la petición.  \nCódigo http esperado: 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Persona no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"Persona no encontada para actualizar\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Nombre Apellido\",\r\n    \"nacionalidad\": \"Colombiano\",\r\n    \"fechaNacimiento\": \"1927-03-03T00:00:00-05:00\",\r\n    \"biografia\": \"bibendum at varius vel pharetra vel turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida\",\r\n    \"rol\" : \"director\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/personas/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"personas",
+						"0"
+					]
+				},
+				"description": "Actualiza una persona no existente.\n\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /personas/0 no existe.\".  \nCódigo http esperado: 404"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Persona",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/personas/{{persona_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"personas",
+						"{{persona_id_1}}"
+					]
+				},
+				"description": "Borra una persona. Se envía el id de la persona creada anteriormente.  \nCódigo HTTP esperado: 204"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Persona no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"Persona no encontada para eliminar\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/personas/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"personas",
+						"0"
+					]
+				},
+				"description": "Borra una persona que no existe en la aplicación.  \nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /personas/0 no existe.\".  \nCódigo http esperado: 404"
+			},
+			"response": []
+		}
+	]
+}

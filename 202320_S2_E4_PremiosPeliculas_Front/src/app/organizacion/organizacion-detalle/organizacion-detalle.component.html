@@ -1,0 +1,24 @@
+<div class="organizacion-detail-container">
+  <div class="organizacion-detail-card">
+    <h2>Detalles de la Organizacion</h2>
+    <div class="organizacion-detail-item">
+      <span class="organizacion-label">ID:</span>
+      <span class="organizacion-value">{{ organizacionDetail.id }}</span>
+    </div>
+    <div class="organizacion-detail-item">
+      <span class="organizacion-label">Nombre:</span>
+      <span class="organizacion-value">{{ organizacionDetail.nombre}}</span>
+    </div>
+    <div class="organizacion-detail-item">
+      <span class="organizacion-label">Premios:</span>
+      <div class="organizacion-premios">
+        <ng-container *ngFor="let premio of organizacionDetail.premios">
+          <a routerLink="/premios/{{premio.id}}" class="organizacion-premios-link">{{premio.fecha | date:'longDate'}}</a>
+        </ng-container>
+      </div>
+    </div>
+    <!-- Botón para volver -->
+    <button class="btn-volver" routerLink="/premiacion/list">Volver</button>
+  </div>
+</div>
+

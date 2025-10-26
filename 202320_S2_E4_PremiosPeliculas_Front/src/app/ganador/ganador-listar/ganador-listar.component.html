@@ -1,0 +1,22 @@
+<div class="container-fluid mt-2">
+  <h2 class="text-center">Ganador</h2>
+</div>
+
+<table class="table">
+  <caption>Tabla de ganadores</caption>
+
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let o of ganadores" (click)="onSelected(o)">
+      <th scope="row">{{o.id}}</th>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf = "selected">
+  <app-ganador-detalle [ganadorDetail]="selectdGanador"></app-ganador-detalle>
+</div>

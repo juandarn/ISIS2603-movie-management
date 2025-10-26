@@ -1,0 +1,22 @@
+<div class="container-fluid mt-2">
+  <h2 class="text-center">Nominado</h2>
+</div>
+
+<table class="table">
+  <caption>Tabla de nominados</caption>
+
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let o of nominados" (click)="onSelected(o)">
+      <th scope="row">{{o.id}}</th>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf = "selected">
+  <app-nominado-detalle [nominadoDetail] = "selectedNominado"></app-nominado-detalle>
+</div>

@@ -1,0 +1,24 @@
+<div class="container-fluid mt-2">
+  <h2 class="text-center">Organizaciones</h2>
+</div>
+
+<table class="table">
+  <caption>Tabla de detalles del ganador</caption>
+
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let o of organizaciones" (click)="onSelected(o)">
+      <th scope="row">{{o.id}}</th>
+      <td>{{o.nombre}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf = "selected">
+  <app-organizacion-detalle [organizacionDetail] = "OrganizacionSeleccionada"></app-organizacion-detalle>
+</div>

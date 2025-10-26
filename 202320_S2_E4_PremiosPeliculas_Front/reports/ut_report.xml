@@ -1,0 +1,151 @@
+<testExecutions version="1">
+  <file path="src/app/cinefilo/cinefilo-detalle/cinefilo-detalle.component.spec.ts">
+    <testCase name="CinefiloDetalleComponent should create" duration="351"/>
+  </file>
+  <file path="src/app/resenia/resenia-listar/resenia-listar.component.spec.ts">
+    <testCase name="ReseniaListarComponent should create" duration="205"/>
+  </file>
+  <file path="src/app/persona/persona-detalle/persona-detalle.component.spec.ts">
+    <testCase name="PersonaDetalleComponent should create" duration="142"/>
+    <testCase name="PersonaDetalleComponent should have a card with person data" duration="40"/>
+  </file>
+  <file path="src/app/ganador/ganador-detalle/ganador-detalle.component.spec.ts">
+    <testCase name="GanadorDetalleComponent should create" duration="78"/>
+  </file>
+  <file path="src/app/premiacion/premiacion-listar/premiacion-listar.component.spec.ts">
+    <testCase name="PremiacionListarComponent should create" duration="233"/>
+  </file>
+  <file path="src/app/ganador/ganador-listar/ganador-listar.component.spec.ts">
+    <testCase name="GanadorListarComponent should create" duration="99"/>
+  </file>
+  <file path="src/app/persona/persona.service.spec.ts">
+    <testCase name="Service: Persona should ..." duration="60"/>
+  </file>
+  <file path="src/app/genero/genero.service.spec.ts">
+    <testCase name="Service: Genero should ..." duration="53"/>
+  </file>
+  <file path="src/app/ganador/ganador.service.spec.ts">
+    <testCase name="Service: Ganador should ..." duration="18"/>
+  </file>
+  <file path="src/app/pelicula/pelicula-listar/pelicula-listar.component.spec.ts">
+    <testCase name="PeliculaListarComponent should have h5 tag with the pelicula.name" duration="144"/>
+    <testCase name="PeliculaListarComponent should have 10 &lt;img> elements" duration="56"/>
+    <testCase name="PeliculaListarComponent should have p5 tag with the pelicula.duracion" duration="46"/>
+    <testCase name="PeliculaListarComponent should have 9 &lt;div.col.mb-2> elements and the deleted pelicula should not exist" duration="34"/>
+    <testCase name="PeliculaListarComponent should have h5 tag with the pelicula.name" duration="67"/>
+    <testCase name="PeliculaListarComponent Creacion componente listar pelicula" duration="15"/>
+    <testCase name="PeliculaListarComponent should have 10 &lt;div.card-front> elements" duration="24"/>
+    <testCase name="PeliculaListarComponent should have 10 &lt;div.col-2.mb-3.mt-3> elements" duration="25"/>
+    <testCase name="PeliculaListarComponent should have 10 &lt;card.> elements " duration="26"/>
+  </file>
+  <file path="src/app/resenia/resenia-detalle/resenia-detalle.component.spec.ts">
+    <testCase name="ReseniaDetalleComponent should create" duration="55"/>
+  </file>
+  <file path="src/app/genero/genero-detalle/genero-detalle.component.spec.ts">
+    <testCase name="GeneroDetalleComponent should create" duration="113"/>
+  </file>
+  <file path="src/app/premio/premio-listar/premio-listar.component.spec.ts">
+    <testCase name="PremioListarComponent should have 10 &lt;tbody tr> elements" duration="83"/>
+    <testCase name="PremioListarComponent should create" duration="45"/>
+  </file>
+  <file path="src/app/plataforma/plataforma-listar/plataforma-listar.component.spec.ts">
+    <testCase name="PlataformaListarComponent should create" duration="117"/>
+  </file>
+  <file path="src/app/plataforma/plataforma-detalle/plataforma-detalle.component.spec.ts">
+    <testCase name="PlataformaDetalleComponent should create" duration="72"/>
+  </file>
+  <file path="src/app/app.component.spec.ts">
+    <testCase name="AppComponent should create the app" duration="286"/>
+    <testCase name="AppComponent should have as title 'base-project'" duration="30"/>
+  </file>
+  <file path="src/app/genero/genero.service.spec.ts">
+    <testCase name="Service: Genero should ..." duration="45"/>
+  </file>
+  <file path="src/app/premiacion/premiacion.service.spec.ts">
+    <testCase name="Service: Premiacion should ..." duration="22"/>
+  </file>
+  <file path="src/app/pelicula/pelicula.service.spec.ts">
+    <testCase name="Service: Pelicula should ..." duration="12"/>
+  </file>
+  <file path="src/app/premio/premio-detalle/premio-detalle.component.spec.ts">
+    <testCase name="PremioDetalleComponent debe crear un div para cada detalle del premio" duration="115"/>
+    <testCase name="PremioDetalleComponent should create" duration="38"/>
+    <testCase name="PremioDetalleComponent debe tener un header para la organización" duration="9"/>
+    <testCase name="PremioDetalleComponent debe mostrar correctamente el país del premio" duration="10"/>
+    <testCase name="PremioDetalleComponent debe tener un enlace para cada reseña" duration="12"/>
+  </file>
+  <file path="src/app/genero/genero-listar/genero-listar.component.spec.ts">
+    <testCase name="GeneroListarComponent should have 10 &lt;tbody tr> elements" duration="57"/>
+    <testCase name="GeneroListarComponent should create" duration="52"/>
+  </file>
+  <file path="src/app/resenia/resenia.service.spec.ts">
+    <testCase name="Service: Resenia should ..." duration="28"/>
+  </file>
+  <file path="src/app/persona/director-listar/director-listar.component.spec.ts">
+    <testCase name="DirectorListarComponent should create" duration="133"/>
+    <testCase name="DirectorListarComponent all should be directors" duration="75"/>
+    <testCase name="DirectorListarComponent should have the corresponding data to the person" duration="25"/>
+  </file>
+  <file path="src/app/organizacion/organizacion-listar/organizacion-listar.component.spec.ts">
+    <testCase name="OrganizacionListarComponent should create" duration="102"/>
+  </file>
+  <file path="src/app/persona/actor-listar/actor-listar.component.spec.ts">
+    <testCase name="ActorListarComponent all should be actores" duration="43"/>
+    <testCase name="ActorListarComponent should create" duration="45"/>
+    <testCase name="ActorListarComponent should have the corresponding data to the person" duration="26"/>
+  </file>
+  <file path="src/app/premiacion/premiacion-listar/map.service.spec.ts">
+    <testCase name="Service: Map should ..." duration="16"/>
+  </file>
+  <file path="src/app/organizacion/organizacion.service.spec.ts">
+    <testCase name="Service: Organizacion should ..." duration="23"/>
+  </file>
+  <file path="src/app/pelicula/pelicula-crear/pelicula-crear.component.spec.ts">
+    <testCase name="PeliculaCrearComponent should create" duration="133"/>
+  </file>
+  <file path="src/app/pelicula/pelicula-detalle/pelicula-detalle.component.spec.ts">
+    <testCase name="PeliculaDetalleComponent should have one dd tag for component.peliculaDetail.nombre" duration="163"/>
+    <testCase name="PeliculaDetalleComponent should have one dd tag for component.peliculaDetail.pais" duration="85"/>
+    <testCase name="PeliculaDetalleComponent should have one dd tag for component.peliculaDetail.fechaEstreno" duration="41"/>
+    <testCase name="PeliculaDetalleComponent should have one dd tag for component.peliculaDetail.LinkTrailer" duration="42"/>
+    <testCase name="PeliculaDetalleComponent should have one dd tag for component.peliculaDetail.duracion" duration="22"/>
+    <testCase name="PeliculaDetalleComponent should create" duration="30"/>
+    <testCase name="PeliculaDetalleComponent should have one dd tag for component.peliculaDetail.idiomaOriginal" duration="43"/>
+    <testCase name="PeliculaDetalleComponent should have an img element with alt= bookDetail.name" duration="21"/>
+    <testCase name="PeliculaDetalleComponent should have 1 &lt;dd> elements" duration="40"/>
+    <testCase name="PeliculaDetalleComponent should have a p.h3.p-3 element with peliculaDetail.name" duration="74"/>
+    <testCase name="PeliculaDetalleComponent should have an img element with src= bookDetail.image" duration="23"/>
+  </file>
+  <file path="src/app/nominado/nominado-detalle/nominado-detalle.component.spec.ts">
+    <testCase name="NominadoDetalleComponent should create" duration="129"/>
+  </file>
+  <file path="src/app/premio/premio.service.spec.ts">
+    <testCase name="Service: Premio should ..." duration="25"/>
+  </file>
+  <file path="src/app/plataforma/plataforma.service.spec.ts">
+    <testCase name="Service: Plataforma should ..." duration="17"/>
+  </file>
+  <file path="src/app/nominado/nominado-listar/nominado-listar.component.spec.ts">
+    <testCase name="NominadoListarComponent should create" duration="61"/>
+  </file>
+  <file path="src/app/cinefilo/cinefilo.service.spec.ts">
+    <testCase name="Service: Cinefilo should ..." duration="25"/>
+  </file>
+  <file path="src/app/principal/principal.service.spec.ts">
+    <testCase name="Service: Principal should ..." duration="55"/>
+  </file>
+  <file path="src/app/nominado/nominado.service.spec.ts">
+    <testCase name="Service: Nominado should ..." duration="13"/>
+  </file>
+  <file path="src/app/premiacion/premiacion-listar/geolocalizacion.service.spec.ts">
+    <testCase name="Service: Geolocalizacion should ..." duration="21"/>
+  </file>
+  <file path="src/app/organizacion/organizacion-detalle/organizacion-detalle.component.spec.ts">
+    <testCase name="OrganizacionDetalleComponent should create" duration="91"/>
+  </file>
+  <file path="src/app/premiacion/premiacion-detail/premiacion-detail.component.spec.ts">
+    <testCase name="PremiacionDetailComponent should display the history in the card text" duration="141"/>
+    <testCase name="PremiacionDetailComponent should display the category in the card title" duration="24"/>
+    <testCase name="PremiacionDetailComponent should create" duration="30"/>
+  </file>
+</testExecutions>

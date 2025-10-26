@@ -1,0 +1,395 @@
+{
+	"info": {
+		"_postman_id": "014f1fcc-878e-4d0d-a2aa-7139958695e9",
+		"name": "Premiacion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20955514",
+		"_collection_link": "https://orange-zodiac-989531.postman.co/workspace/moviesWorkSpace~95b44ad5-2d9b-4c32-b792-3f2712644db4/collection/20955514-014f1fcc-878e-4d0d-a2aa-7139958695e9?action=share&source=collection_link&creator=20955514"
+	},
+	"item": [
+		{
+			"name": "Create Premiacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"premiacion_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categoria\": \"Mejor Actor\",\r\n    \"historia\" : \"El premio al mejor actor se le entrega a aquellos que...\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones"
+					]
+				},
+				"description": "Crea una nueva premiacion. El Id es inicializado por la BD y se debe ver en la respuesta.  \nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 201**"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Premiacion2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"premiacion_id2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categoria\": \"Mejor Pelicula\",\r\n    \"historia\": \"La mejor pelicula se le entrega a aquellas peliculas que cumple con...\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones"
+					]
+				},
+				"description": "Crea una nueva premiacion. El Id es inicializado por la BD y se debe ver en la respuesta.  \nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 201**"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Premiaciones",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of premiaciones > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones"
+					]
+				},
+				"description": "Consulta todas las premiaciones de la aplicacion.  \nLa petición no tiene cuerpo.\n\nPara la prueba, se verifica que el conjunto de organizaciones en la respuesta tenga mas de uno.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Premiacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones/{{premiacion_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones",
+						"{{premiacion_id}}"
+					]
+				},
+				"description": "Consulta la premiacion que esta representada con ese id.  \nLa petición no tiene cuerpo.\n\nPara la prueba, se verifica que la organizacion exista.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Premiacion no existen",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No existe una premiacion con ese Id\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones",
+						"0"
+					]
+				},
+				"description": "Intenta consultar una premiacion que no existe  \nLa petición no tiene cuerpo.\n\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Organizacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categoria\": \"Mejor Soundtrack\",\r\n    \"historia\": \"El premio del mejor Soundtrack es elegido teniendo en cuenta...\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones/{{premiacion_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones",
+						"{{premiacion_id}}"
+					]
+				},
+				"description": "Actualiza una premiacion existente.  \nse envía el Id en la URL de la petición.  \nCódigo http esperado: 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Premiacion no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No existe una premiacion con el id\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categoria\": \"Mejor Soundtrack\",\r\n    \"historia\": \"El premio del mejor Soundtrack es elegido teniendo en cuenta...\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones",
+						"0"
+					]
+				},
+				"description": "Actualiza una organizacion no existente.\n\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /premiaciones/0 no existe.\".  \nCódigo http esperado: 404"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Premiacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones/{{premiacion_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones",
+						"{{premiacion_id}}"
+					]
+				},
+				"description": "Borra una premiacion. Se envía el id de la organizacion creada anteriormente.  \nCódigo HTTP esperado: 204"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Premiacion2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones/{{premiacion_id2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones",
+						"{{premiacion_id2}}"
+					]
+				},
+				"description": "Borra una premiacion. Se envía el id de la organizacion creada anteriormente.  \nCódigo HTTP esperado: 204"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Organizacion no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No existe una premiacion con ese id\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones",
+						"0"
+					]
+				},
+				"description": "Borra una premiacion que no existe en la aplicación.  \nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /premiaciones/0 no existe.\".  \nCódigo http esperado: 404"
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,618 @@
+{
+	"info": {
+		"_postman_id": "222f323d-84ee-4b95-a6e5-7033a1d79efc",
+		"name": "OrganizacionPremios Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20955514",
+		"_collection_link": "https://orange-zodiac-989531.postman.co/workspace/aa~9cde262e-549d-42fc-b335-7090b277a7a4/collection/20955514-222f323d-84ee-4b95-a6e5-7033a1d79efc?action=share&source=collection_link&creator=20955514"
+	},
+	"item": [
+		{
+			"name": "Create Premiacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"premiacion_id1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categoria\": \"mejor actor\",\r\n    \"historia\": \"Se entrega el premio a..\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Organizacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"organizacion_id1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Premios Óscar\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones"
+					]
+				},
+				"description": "Crea una nueva organizacion. El Id es inicializado por la BD y se debe ver en la respuesta.  \nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 201**"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Organizacion2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"organizacion_id2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Premios montana\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Premio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"premio_id_1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fecha\": \"2000-08-20T00:00:00-05:00\",\r\n    \"pais\": \"US\",\r\n    \"premiacion\":{\r\n        \"id\": \"{{premiacion_id1}}\"\r\n        \r\n    },\r\n    \"organizacion\":{\r\n        \"id\": \"{{organizacion_id1}}\",\r\n        \"nombre\": \"Premios Óscar\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/premios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premios"
+					]
+				},
+				"description": "Crea un nuevo premio. El Id es inicializado por la BD y se debe ver en la respuesta.  \nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 201**"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Premio2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"premio_id_2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fecha\": \"2000-09-25\",\r\n    \"pais\": \"US\",\r\n    \"organizacion\":{\r\n        \"id\": \"{{organizacion_id1}}\",\r\n        \"nombre\" : \"Premios Óscar\"\r\n    },\r\n    \"premiacion\":{\r\n        \"id\": \"{{premiacion_id1}}\",\r\n        \"categoria\": \"mejor actor\",\r\n        \"historia\": \"Se entrega el premio a..\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/premios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premios"
+					]
+				},
+				"description": "Crea un nuevo premio. El Id es inicializado por la BD y se debe ver en la respuesta.  \nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 201**"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar premio a una organizacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones/{{organizacion_id2}}/premios/{{premio_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones",
+						"{{organizacion_id2}}",
+						"premios",
+						"{{premio_id_1}}"
+					]
+				},
+				"description": "Asocia un premio a una organizacion en la aplicación.\n\nSe envía el Id de la organizacion y el del premio a asociar en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar premio a una organizacion no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No existe una organizacion con ese Id\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones/0/premios/{{premio_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones",
+						"0",
+						"premios",
+						"{{premio_id_1}}"
+					]
+				},
+				"description": "Asocia un premio que no existe a una organizacion en la aplicación.\n\nSe envía el Id de la organizacion y el del premio a asociar en la URL de la petición.\n\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /premios/0 no existe.\".\n\n  \nCódigo http esperado: 404"
+			},
+			"response": []
+		},
+		{
+			"name": "Get los premios de una organizacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of premios > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones/{{organizacion_id2}}/premios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones",
+						"{{organizacion_id2}}",
+						"premios"
+					]
+				},
+				"description": "Consulta los premios de una organizacion en la aplicación.  \nLa petición no tiene cuerpo.  \nSe envía el Id de la organizacion y el del premio a consultar en la URL de la petición.  \nCódigo http esperado: 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Get un premio de una organizacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones/{{organizacion_id2}}/premios/{{premio_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones",
+						"{{organizacion_id2}}",
+						"premios",
+						"{{premio_id_1}}"
+					]
+				},
+				"description": "Consulta un premio de una organizacion en la aplicación.  \nLa petición no tiene cuerpo.  \nSe envía el Id de la organizacion y del premio a consultar en la URL de la petición.  \nCódigo http esperado: 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Get un premio no asociado a una organizacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"El premio no está asociado a la organizacion\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones/{{organizacion_id1}}/premios/{{premio_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones",
+						"{{organizacion_id1}}",
+						"premios",
+						"{{premio_id_1}}"
+					]
+				},
+				"description": "Consulta un premio que no esta asociado a una organizacion en la aplicación.  \nPara la prueba se verifica que se genera el error y el mensaje \"El premio no está asociado a la organizacion\".  \nCódigo http esperado: 412"
+			},
+			"response": []
+		},
+		{
+			"name": "Get un premio de una organizacion no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No existe una organizacion con ese Id\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones/0/premios/{{premio_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones",
+						"0",
+						"premios",
+						"{{premio_id_1}}"
+					]
+				},
+				"description": "Consulta un premio que no existe de una organizacion en la aplicación.  \nPara la prueba se verifica que se genera el error.  \nCódigo http esperado: 404"
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar premios a una organizacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": {{premio_id_1}}\r\n    },\r\n    {\r\n        \"id\": {{premio_id_2}}\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones/{{organizacion_id1}}/premios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones",
+						"{{organizacion_id1}}",
+						"premios"
+					]
+				},
+				"description": "Actualiza la lista de premios una organizacion existente.  \nSe envía el Id en la URL de la petición.  \nCódigo http esperado: 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar premios a una organizacion no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No existe una organizacion con ese Id\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": 0\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones/0/premios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones",
+						"0",
+						"premios"
+					]
+				},
+				"description": "Actualiza la lista de premios de una organizacion existente con premios que no existen.  \nSe envía el Id en la URL de la petición.  \nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /premios/0 no existe.\".  \nCódigo http esperado: 404"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete un premio de una organizacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones/{{organizacion_id1}}/premios/{{premio_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones",
+						"{{organizacion_id1}}",
+						"premios",
+						"{{premio_id_1}}"
+					]
+				},
+				"description": "Borra la asociación entre un premio y una organizacion. Se envían los ids de la organizacion y del premio creados anteriormente.  \nCódigo HTTP esperado: 204"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete un premio de una organizacion que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No existe una organizacion con ese Id\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones/0/premios/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones",
+						"0",
+						"premios",
+						"0"
+					]
+				},
+				"description": "Borra la asociación entre a un premio y una organizacion que no existe en la aplicación.  \nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /organizaciones/0/premios no existe.\".  \nCódigo http esperado: 404"
+			},
+			"response": []
+		}
+	]
+}

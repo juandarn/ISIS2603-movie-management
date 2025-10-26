@@ -1,0 +1,88 @@
+.organizacion-detail-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.organizacion-detail-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    /* Ajustar según el ancho deseado */
+    max-width: 800px;
+    /* Asegúrate de que no sea demasiado ancho */
+}
+
+.organizacion-detail-card h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.organizacion-detail-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.organizacion-label {
+    font-weight: bold;
+    color: #555;
+}
+
+.organizacion-value {
+    color: #333;
+}
+
+.organizacion-premios{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+
+.organizacion-premios-link{
+    background-color: #e7e7e7;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s;
+}
+
+.organizacion-premios-link:hover{
+    background-color: #d4d4d4;
+}
+
+@media screen and (max-width: 768px) {
+    .organizacion-detail-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.btn-volver {
+    margin-top: 20px;
+    /* Espacio por encima del botón */
+    padding: 10px 20px;
+    /* Relleno interno del botón */
+    background-color: #007bff;
+    /* Color de fondo */
+    color: white;
+    /* Color del texto */
+    border: none;
+    /* Sin borde */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    cursor: pointer;
+    /* Cursor en forma de mano al pasar el ratón */
+}
+
+.btn-volver:hover {
+    background-color: #0056b3;
+    /* Color de fondo al pasar el ratón */
+}

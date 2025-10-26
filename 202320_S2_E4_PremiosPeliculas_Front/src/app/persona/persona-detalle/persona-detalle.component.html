@@ -1,0 +1,175 @@
+<div class="container">
+  <br />
+  <div class="row justify-content-md-center">
+    <div class="col-9">
+      <div
+        class="card DataPerson mb-3 text-light"
+        style="background-color: var(--oxford-blue)"
+      >
+        <div class="row justify-content-md-center g-0">
+          <div class="col-md-3">
+            <img
+              src="{{ personaDetailDTO.imagen }}"
+              class="img-fluid rounded-start"
+              alt="..."
+            />
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+              <h2 class="card-title text-center">
+                {{ personaDetailDTO.nombre }}
+              </h2>
+              <h3 class="card-title">Biografia</h3>
+              <p class="card-text">{{ personaDetailDTO.biografia }}</p>
+              <h3 class="card-title">Fecha de nacimiento</h3>
+              <p class="card-text">
+                {{ personaDetailDTO.fechaNacimiento | date : "fullDate" }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col">
+      <h3 class="text-light">Peliculas</h3>
+    </div>
+  </div>
+  <div class="row row-cols-md-4 g-4">
+    <div class="col" *ngFor="let i of personaDetailDTO.peliculas">
+      <div
+        class="card DataPeliculas h-100"
+        routerLink="/peliculas/{{ i.id }}"
+        style="background-color: var(--rich-black-fogra-29)"
+      >
+        <img src="{{ i.imagen }}" class="card-img-top rounded" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title text-light">{{ i.nombre }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col">
+      <h3 class="text-light">Premios Ganados</h3>
+    </div>
+  </div>
+  <div class="row row-cols-md-4 g-4">
+    <div class="col" *ngFor="let i of personaDetailDTO.ganados">
+      <div
+        class="card DataGanados h-100"
+        routerLink="/premiacion/{{ i.id }}"
+        style="background-color: var(--rich-black-fogra-29)"
+      >
+        <div [ngSwitch]="i.premiacion.categoria">
+          <img
+            *ngSwitchCase="'Mejor película'"
+            class="card-img-top rounded"
+            src="../assets/images/premiaciones/mejor_pelicula.png"
+            alt="Mejor película"
+          />
+          <img
+            *ngSwitchCase="'Mejor director'"
+            class="card-img-top rounded"
+            src="../assets/images/premiaciones/mejor_director.png"
+            alt="Mejor director"
+          />
+          <img
+            *ngSwitchCase="'Mejor actor'"
+            class="card-img-top rounded"
+            src="../assets/images/premiaciones/mejor_actor.png"
+            alt="Mejor actor"
+          />
+          <img
+            *ngSwitchCase="'Mejor actriz'"
+            class="card-img-top rounded"
+            src="../assets/images/premiaciones/mejor_actriz.png"
+            alt="Mejor actriz"
+          />
+          <img
+            *ngSwitchCase="'Mejor guión original'"
+            class="card-img-top rounded"
+            src="../assets/images/premiaciones/mejor_guion.png"
+            alt="Mejor guión"
+          />
+          <img
+            *ngSwitchDefault
+            class="card-img-top rounded"
+            src="../assets/images/premiaciones/premiacion.png"
+            alt="Imagen por defecto"
+          />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-light">{{ i.premiacion.categoria }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col">
+      <h3 class="text-light">Premios Nominados</h3>
+    </div>
+  </div>
+  <br />
+  <div class="row row-cols-md-4 g-4">
+    <div class="col" *ngFor="let i of personaDetailDTO.nominaciones">
+      <div
+        class="card DataGanados h-100"
+        routerLink="/premiacion/{{ i.id }}"
+        style="background-color: var(--rich-black-fogra-29)"
+      >
+        <div [ngSwitch]="i.premiacion.categoria">
+          <img
+            *ngSwitchCase="'Mejor película'"
+            class="card-img-top rounded"
+            src="../assets/images/premiaciones/mejor_pelicula.png"
+            alt="Mejor película"
+          />
+          <img
+            *ngSwitchCase="'Mejor director'"
+            class="card-img-top rounded"
+            src="../assets/images/premiaciones/mejor_director.png"
+            alt="Mejor director"
+          />
+          <img
+            *ngSwitchCase="'Mejor actor'"
+            class="card-img-top rounded"
+            src="../assets/images/premiaciones/mejor_actor.png"
+            alt="Mejor actor"
+          />
+          <img
+            *ngSwitchCase="'Mejor actriz'"
+            class="card-img-top rounded"
+            src="../assets/images/premiaciones/mejor_actriz.png"
+            alt="Mejor actriz"
+          />
+          <img
+            *ngSwitchCase="'Mejor guión original'"
+            class="card-img-top rounded"
+            src="../assets/images/premiaciones/mejor_guion.png"
+            alt="Mejor guión"
+          />
+          <img
+            *ngSwitchDefault
+            class="card-img-top rounded"
+            src="../assets/images/premiaciones/premiacion.png"
+            alt="Imagen por defecto"
+          />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-light">{{ i.premiacion.categoria }}</h5>
+          <h5 class="card-text text-light">
+            {{ i.premiacion.peliculaGanadora.nombre }}
+          </h5>
+          <p class="card-text text-light">
+            {{ i.premiacion.premios[0].fecha }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

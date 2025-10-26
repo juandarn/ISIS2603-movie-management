@@ -1,0 +1,23 @@
+<div class="container-fluid mt-2">
+  <h2 class="text-center">Generos</h2>
+</div>
+<table class="table">
+  <caption>Tabla de generos</caption>
+
+  <thead>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of generos" (click)="onSelected(i)" >
+        <th scope="row">{{i.id}}</th>
+        <td scope="row">{{i.nombre}}</td>
+    </tr>
+  </tbody>
+</table>
+
+    <div>
+    </div>
+<div *ngIf ="selected">
+  <app-genero-detalle [generoDetail]= "generoSeleccionado" ></app-genero-detalle>
+</div>

@@ -1,0 +1,79 @@
+
+.opciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 100px auto;
+  }
+  
+  .opciones .dropdown {
+    margin: 0 10px;
+  }
+  
+  .opciones h2 {
+    color: white;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .btn-azul-claro {
+    background-color: #47B5FF;
+    color: white;
+    border: 0px solid #47B5FF;
+  }
+  
+  .btn-azul-oscuro {
+    background-color: #4E4FEB;
+    color: white;
+    border: 0px solid #4E4FEB;
+  
+  }
+
+  
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+  
+  .category-card {
+    position: relative;
+    height: 150px;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .category-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 20%, #000a);
+  }
+  
+  .category-card.light::after {
+    background: linear-gradient(180deg, transparent 20%, #ffffff);
+  }
+  
+  .category-card:hover .card-img {
+    transform: scale(1.1);
+  }
+  
+  .card {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white; /* Cambia el color del texto a blanco para todas las tarjetas */
+  }
+  
+  .category-card .card-details {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: #fff;
+    z-index: 2;
+  }
+  
+  .category-card .card-title {
+    font-size: 18px;
+    margin: 0;
+  }
+  

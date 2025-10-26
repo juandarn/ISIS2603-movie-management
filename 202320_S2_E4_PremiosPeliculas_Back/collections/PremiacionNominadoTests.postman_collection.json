@@ -1,0 +1,623 @@
+{
+	"info": {
+		"_postman_id": "459ad27a-f3b7-48c8-aa0d-72c68bdcf513",
+		"name": "PremiacionNominadoTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20955514",
+		"_collection_link": "https://orange-zodiac-989531.postman.co/workspace/aa~9cde262e-549d-42fc-b335-7090b277a7a4/collection/20955514-459ad27a-f3b7-48c8-aa0d-72c68bdcf513?action=share&source=collection_link&creator=20955514"
+	},
+	"item": [
+		{
+			"name": "Create Premiacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"premiacion_id_1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categoria\": \"mejor actor\",\r\n    \"historia\": \"Se entrega el premio a..\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Premiacion2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"premiacion_id_2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categoria\": \"mejor director\",\r\n    \"historia\": \"Se entrega el premio a..\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Nominado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"nominado_id_1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"premiacion\":{\r\n        \"id\": {{premiacion_id_1}}\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/nominados",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"nominados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Nominado2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"nominado_id_2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"premiacion\":{\r\n        \"id\": {{premiacion_id_1}}\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/nominados",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"nominados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar nominado a una premiacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones/{{premiacion_id_2}}/nominados/{{nominado_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones",
+						"{{premiacion_id_2}}",
+						"nominados",
+						"{{nominado_id_1}}"
+					]
+				},
+				"description": "Asocia un premio a una organizacion en la aplicación.\n\nSe envía el Id de la organizacion y el del premio a asociar en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar nominado a una premiacion que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No existe una premiacion con ese Id\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones/0/nominados/{{nominado_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones",
+						"0",
+						"nominados",
+						"{{nominado_id_1}}"
+					]
+				},
+				"description": "Asocia un premio a una organizacion en la aplicación.\n\nSe envía el Id de la organizacion y el del premio a asociar en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Get los nominados de una premiacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of nominados > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones/{{premiacion_id_1}}/nominados",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones",
+						"{{premiacion_id_1}}",
+						"nominados"
+					]
+				},
+				"description": "Consulta los premios de una organizacion en la aplicación.  \nLa petición no tiene cuerpo.  \nSe envía el Id de la organizacion y el del premio a consultar en la URL de la petición.  \nCódigo http esperado: 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Get un nominado de una premiacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones/{{premiacion_id_2}}/nominados/{{nominado_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones",
+						"{{premiacion_id_2}}",
+						"nominados",
+						"{{nominado_id_1}}"
+					]
+				},
+				"description": "Consulta un premio de una organizacion en la aplicación.  \nLa petición no tiene cuerpo.  \nSe envía el Id de la organizacion y del premio a consultar en la URL de la petición.  \nCódigo http esperado: 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Get un nominado no asociado a una premiacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"El nominado no está asociado a la premiacion\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones/{{premiacion_id_1}}/nominados/{{nominado_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones",
+						"{{premiacion_id_1}}",
+						"nominados",
+						"{{nominado_id_1}}"
+					]
+				},
+				"description": "Consulta un premio que no esta asociado a una organizacion en la aplicación.  \nPara la prueba se verifica que se genera el error y el mensaje \"El premio no está asociado a la organizacion\".  \nCódigo http esperado: 412"
+			},
+			"response": []
+		},
+		{
+			"name": "Get un nominado de una premiacion no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No existe una premiacion con ese Id\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones/0/nominados/{{nominado_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones",
+						"0",
+						"nominados",
+						"{{nominado_id_1}}"
+					]
+				},
+				"description": "Consulta un premio que no existe de una organizacion en la aplicación.  \nPara la prueba se verifica que se genera el error.  \nCódigo http esperado: 404"
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar nominados a una premiacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": {{nominado_id_1}}\r\n    },\r\n    {\r\n        \"id\": {{nominado_id_2}}\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones/{{premiacion_id_1}}/nominados/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones",
+						"{{premiacion_id_1}}",
+						"nominados",
+						""
+					]
+				},
+				"description": "Actualiza la lista de premios una organizacion existente.  \nSe envía el Id en la URL de la petición.  \nCódigo http esperado: 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar nominados a una premiacion no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No existe una premiacion con ese Id\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": 0\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones/0/nominados",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones",
+						"0",
+						"nominados"
+					]
+				},
+				"description": "Actualiza la lista de premios de una organizacion existente con premios que no existen.  \nSe envía el Id en la URL de la petición.  \nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /premios/0 no existe.\".  \nCódigo http esperado: 404"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un nominado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/nominados/{{nominado_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"nominados",
+						"{{nominado_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un nominado2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/nominados/{{nominado_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"nominados",
+						"{{nominado_id_2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una premiacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones/{{premiacion_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones",
+						"{{premiacion_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una premiacion2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/premiaciones/{{premiacion_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"premiaciones",
+						"{{premiacion_id_2}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

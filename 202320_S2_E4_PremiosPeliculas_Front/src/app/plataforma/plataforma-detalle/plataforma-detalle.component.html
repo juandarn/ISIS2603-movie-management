@@ -1,0 +1,20 @@
+
+
+
+<div class="container">
+  <h2 style="color:white;">Peliculas de {{plataformaDetail.nombre}}</h2>
+  <br>
+  <div class="container tarjetas d-flex flex-wrap">
+    <div *ngFor="let movie of plataformaDetail.peliculas" class="card">
+      <a [routerLink]="['/peliculas', movie.id]">
+      <img [src]="movie.imagen" class="card-img-top" alt="{{ movie.nombre }}">
+      </a>
+      <div class="card-body">
+        <p class="card-nombre">{{ movie.nombre }}</p>
+        <p class="card-text"> {{ movie.fechaEstreno }}</p>
+        <p class="card-text">{{ movie.duracion }} minutos</p>
+      </div>
+    </div>
+  </div>
+  </div>
+  

@@ -1,0 +1,401 @@
+{
+	"info": {
+		"_postman_id": "385d4938-c3cc-4719-a401-4ea5938cd8db",
+		"name": "PlataformaPelicula Tests",
+		"description": "Colección de pruebas sobre el recurso PlataformaPelicula",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29281547"
+	},
+	"item": [
+		{
+			"name": "Crear una película",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"pelicula_id_1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"pedro y sus aventuras\",\r\n    \"duracion\": 70,\r\n    \"pais\": \"Colombia\",\r\n    \"idiomaOriginal\": \"Español\",\r\n    \"fechaEstreno\": \"1927-03-03T00:00:00-05:00\",\r\n    \"linkTrailer\": \"http:pedro_aventuras.com\"\r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/peliculas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"peliculas"
+					]
+				},
+				"description": "Crea una nueva pelicula. El recurso tiene los atributos de las peliculas como nombe, duracion, pais, idiomaOriginal, fechaEstreno y linkTrailer. El Id es inicializado por la BD y se debe ver en la respuesta.\n\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 200**"
+			},
+			"response": [
+				{
+					"name": "Crear una película",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"nombre\": \"pedro y sus aventuras\",\r\n    \"duracion\": 70,\r\n    \"pais\": \"Colombia\",\r\n    \"idiomaOriginal\": \"Español\",\r\n    \"fechaEstreno\": \"1927-03-03T00:00:00-05:00\",\r\n    \"linkTrailer\": \"http:pedro_aventuras.com\"\r\n\r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/peliculas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"peliculas"
+							]
+						}
+					},
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Crear plataforma",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"plataforma_id_1\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\":\"Netflix\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/plataformas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"plataformas"
+					]
+				},
+				"description": "Crea una nueva plataforma. El recurso solo tiene de atributo \"name\" que debe ser único. El Id es inicializado por la BD y se debe ver en la respuesta.\n\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar una película a una plataforma",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/plataformas/{{plataforma_id_1}}/peliculas/{{pelicula_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"plataformas",
+						"{{plataforma_id_1}}",
+						"peliculas",
+						"{{pelicula_id_1}}"
+					]
+				},
+				"description": "Asocia una pelicula a una plataforma en la aplicación.\n\nSe envía el Id de la plataforma y el de la pelicula a asociar en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar una película que no existe a una plataforma",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"Película no encontrada\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/plataformas/{{plataforma_id_1}}/peliculas/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"plataformas",
+						"{{plataforma_id_1}}",
+						"peliculas",
+						"0"
+					]
+				},
+				"description": "Asocia una película que no existe a una plataforma en la aplicación.\n\nSe envía el Id de la plataforma y el de la pelicula a asociar en la URL de la petición.\n\nPara la prueba se verifica que se genera el error.\n\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una película de una plataforma",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/plataformas/{{plataforma_id_1}}/peliculas/{{pelicula_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"plataformas",
+						"{{plataforma_id_1}}",
+						"peliculas",
+						"{{pelicula_id_1}}"
+					]
+				},
+				"description": "Consulta una pelicula de una plataforma en la aplicación.  \nLa petición no tiene cuerpo.\n\nSe envía el Id de la plataforma y de la película a consultar en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una película que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"Pelicula no encontrada\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/plataformas/{{plataforma_id_1}}/peliculas/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"plataformas",
+						"{{plataforma_id_1}}",
+						"peliculas",
+						"0"
+					]
+				},
+				"description": "Consulta una película que no existe de un plataforma en la aplicación.\n\nPara la prueba se verifica que se genera el error.\n\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar películas a un a plataforma",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\n    \"nombre\": \"pedro y sus aventuras\",\n    \"duracion\": 70,\n    \"pais\": \"Colombia\",\n    \"idiomaOriginal\": \"Español\",\n    \"fechaEstreno\": \"1927-03-03T00:00:00-05:00\",\n    \"linkTrailer\": \"http:pedro_aventuras.com\",\n    \"id\":{{pelicula_id_1}}\n} ,\n{\"nombre\": \"peter pan\",\n    \"duracion\": 70,\n    \"pais\": \"EEUU\",\n    \"idiomaOriginal\": \"Ingles\",\n    \"fechaEstreno\": \"1989-03-03T00:00:00-05:00\",\n    \"linkTrailer\": \"http:peterpan.com\",\n    \"id\":{{pelicula_id_1}}\n}]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/plataformas/{{plataforma_id_1}}/peliculas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"plataformas",
+						"{{plataforma_id_1}}",
+						"peliculas"
+					]
+				},
+				"description": "Actualiza la lista de peliculas de una plataforma existente.\n\nSe envía el Id en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar peliculas a una plataforma que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.apierror.message).to.eql(\"Plataforma no encontrada\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\n    \"nombre\": \"pedro y sus aventuras\",\n    \"duracion\": 70,\n    \"pais\": \"Colombia\",\n    \"idiomaOriginal\": \"Español\",\n    \"fechaEstreno\": \"1927-03-03T00:00:00-05:00\",\n    \"linkTrailer\": \"http:pedro_aventuras.com\"\n} ,\n{\"nombre\": \"peter pan\",\n    \"duracion\": 70,\n    \"pais\": \"EEUU\",\n    \"idiomaOriginal\": \"Ingles\",\n    \"fechaEstreno\": \"1989-03-03T00:00:00-05:00\",\n    \"linkTrailer\": \"http:peterpan.com\"\n}]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/plataformas/0/peliculas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"plataformas",
+						"0",
+						"peliculas"
+					]
+				},
+				"description": "Actualiza la lista de película de una plataforma existente con películas que no existen.\n\nSe envía el Id en la URL de la petición.\n\nPara la prueba se verifica que se genera el error.\n\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener las peliculas de una plataforma",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of peliculas > ' + 0, function () {",
+							"   var data = pm.response.json()",
+							"   pm.expect(data.length).to.greaterThan(0)",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/plataformas/{{plataforma_id_1}}/peliculas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"plataformas",
+						"{{plataforma_id_1}}",
+						"peliculas"
+					]
+				},
+				"description": "Consulta las películas de una plataforma en la aplicación.  \nLa petición no tiene cuerpo.\n\nSe envía el Id de la plataforma y el de la película a consultar en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		}
+	]
+}

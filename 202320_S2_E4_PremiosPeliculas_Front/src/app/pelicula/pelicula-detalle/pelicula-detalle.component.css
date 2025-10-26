@@ -1,0 +1,577 @@
+/* Estilos para el componente detalle de la entidad Película */
+
+.container-fluid {
+    background-color: #333; /* Cambiamos el color de fondo */
+    border: 0.5em solid gold; /* Añadimos un borde dorado */
+    border-radius: 1.5em; /* Suavizamos los bordes */
+    padding: 2em; /* Añadimos un padding */
+   
+  }
+
+  
+  
+  .h3 {
+    font-size: 2em; /* Aumentamos el tamaño del título */
+    margin-bottom: 20px; /* Añadimos espacio abajo del título */
+    color: #d4af37;
+  }
+  
+  .row {
+    margin-bottom: 30px; /* Espacio entre la fila principal y el siguiente elemento */
+  }
+  
+  .col {
+    background-color: #f7f7f7; /* Cambiamos el color de fondo de la columna */
+    padding: 20px; /* Añadimos espacio interno a la columna */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para resaltar */
+  }
+  
+  dl {
+    margin-bottom: 20px; /* Espacio debajo de la lista descriptiva */
+  }
+  
+  dt {
+    font-weight: bold; /* Texto en negrita para etiquetas de lista */
+    margin-top: 10px; /* Espacio arriba de las etiquetas */
+  }
+  
+  dd {
+    margin-bottom: 10px; /* Espacio abajo de los elementos de la lista */
+  }
+  
+  /* Estilos para los enlaces */
+  a {
+    color: #3366cc; /* Cambiamos el color de los enlaces */
+    text-decoration: none; /* Quitamos el subrayado */
+  }
+  
+  a:hover {
+    text-decoration: underline; /* Añadimos subrayado al pasar el mouse */
+  }
+  
+  .caption {
+    font-style: italic; /* Texto en cursiva para la descripción */
+    color: #777; /* Color más suave para la descripción */
+  }
+  
+
+  .fondo-negro-azul{
+    background-color: rgb(26, 27, 33);
+}
+
+.fondo-azul-claro {
+    background-color: hsl(214deg 72.96% 51.05%);
+  }
+
+
+.fondo-marron{
+    background-color: #21201A;
+}
+
+.fondo-blanco{
+    background-color: antiquewhite;
+}
+
+
+
+.premiaciones-container {
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
+    background-color: rgb(19, 23, 32);
+}
+
+/* Asegúrate de tener una clase para el fondo oscuro semi-transparente */
+.dark-overlay {
+    /* Ajusta la opacidad según sea necesario */
+    padding: 20px;
+}
+
+
+
+.premiaciones-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.card-container {
+    perspective: 1000px;
+    width: 300px;
+    min-height: 500px;
+    max-height: 600px;
+
+}
+
+.card-containerNo{
+    perspective: 1000px;
+    width: 300px;
+    min-height: 500px;
+    max-height: 600px;
+}
+
+
+.card-container:hover .card {
+    transform: rotateY(180deg);
+}
+
+.card {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    max-height: 600px;
+}
+
+.card-front,.card-back {
+    background-color: #181424;
+    overflow: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 10px;
+    /* Ajusta según tu diseño */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    background: #181424; /* Un color de fondo claro para el texto */
+    color: #fff; /* Un color oscuro para el texto para contraste */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.card-back-content {
+    max-width: 90%;
+}
+
+.card-back-title {
+    margin-bottom: 15px;
+    /* Espacio entre el título y el texto */
+    font-size: 1.2em;
+    /* Un tamaño de fuente más grande para el título */
+    font-weight: bold;
+    /* Fuente en negrita para el título */
+    color: #d4af37;
+    /* Un color dorado para el título, similar al de los trofeos */
+}
+
+.card-back-text {
+    font-size: 1em;
+    /* Tamaño de fuente estándar para el texto */
+    line-height: 1.6;
+    /* Espaciado de línea para mejorar la legibilidad */
+    color: #fff;
+    /* Color de texto oscuro para el contraste */
+}
+
+.card-image {
+  display: block; /* Esto asegura que el contenedor de la imagen no tenga espacio adicional debajo */
+  width: 100%; /* Hace que la imagen sea tan ancha como su contenedor */
+  height: 60%; /* Hace que la imagen sea tan alta como su contenedor */
+  object-fit: cover; /* Esto asegurará que la imagen cubra todo el contenedor sin distorsionarse */
+  overflow: hidden; /* Oculta cualquier parte de la imagen que exceda el contenedor */
+  margin-top: 5px;
+}
+
+.image{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    /* Ajusta según necesites */
+}
+
+.card-content {
+    padding: 15px;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+}
+
+.card-title {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+.card-text {
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+.card-footer {
+    font-size: 0.9em;
+    color: #cda434;
+    /* Color dorado */
+    justify-self: flex-end;
+    border-top: #cda434 2px solid;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .premiaciones-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card-container {
+        width: 90%;
+        /* Ocupará más espacio en pantallas pequeñas */
+    }
+}
+
+.modal {
+    display: none;
+    /* Escondido por defecto */
+    position: fixed;
+    /* Se queda fijo en la pantalla */
+    z-index: 1;
+    /* Se sitúa sobre los otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Ancho completo */
+    height: 100%;
+    /* Altura completa */
+    overflow: auto;
+    /* Habilitar scroll si el contenido es grande */
+    background-color: rgb(0, 0, 0);
+    /* Color de fondo semitransparente */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Negro con opacidad */
+}
+
+.modal-open {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+
+
+
+
+.modal-content {
+    background-color: #333;
+    /* Color de fondo igual al de la tarjeta frontal */
+    color: #fff;
+    /* Texto blanco para consistencia */
+    margin: 10% auto;
+    /* Centrar y dar un poco más de espacio desde la parte superior */
+    padding: 20px;
+    border: 1px solid #888;
+    /* Si tienes un color específico en la tarjeta frontal, úsalo aquí */
+    border-radius: 10px;
+    /* Bordes redondeados como las tarjetas */
+    width: 60%;
+    /* Tamaño relativo para diferentes pantallas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombras suaves para dar profundidad */
+    max-width: 1000px;
+    /* Un ancho máximo para pantallas grandes */
+}
+
+@media screen and (min-width: 768px) {
+    .modal-backdrop {
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.modal-backdrop {
+    display: flex;
+        justify-content: center;
+        /* Centrado horizontal */
+        align-items: center;
+        /* Centrado vertical */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        /* Fondo semi-transparente */
+        z-index: 1000;
+        /* Asegúrate de que sea superior a otros elementos */
+}
+
+.close {
+    color: #aaa;
+    /* Color gris claro para el botón cerrar */
+    position: absolute;
+    /* Posicionamiento absoluto dentro del modal */
+    top: 20px;
+    /* Espacio desde la parte superior */
+    right: 20px;
+    /* Espacio desde la derecha */
+    font-size: 28px;
+    /* Tamaño grande para fácil clic */
+    font-weight: bold;
+}
+
+.close:hover,.close:focus {
+    color: #d4af37;
+    /* Cambiar al color dorado al pasar el mouse */
+    cursor: pointer;
+    /* Cambiar el cursor para indicar clic */
+}
+
+
+
+.search-bar label {
+    margin-right: 10px;
+}
+
+.search-bar select {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    /* Estilos adicionales según tus necesidades */
+}   
+
+
+/* Estilos del contenedor de filtros */
+.filters-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+    margin:  50px auto;
+}
+
+/* Estilos para el filtro de categoría */
+.search-bar {
+    justify-self: start;
+    margin-right: 20px;
+    color: #fff;
+}
+
+.boton-mapa{
+    margin-left: auto;
+}
+
+/* Estilos para el switch slider */
+.filter-winner {
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.premiaciones-header{
+    background-color: rgb(19, 23, 32);
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.premiaciones-header h1{
+    font-size: 4em;
+    font-weight: bold;
+    
+}
+
+
+
+.map-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 10%;
+}
+
+.map-header h2{
+    font-size: 2em;
+    font-weight: bold;
+    color: #fff;
+
+}
+
+.map-content img{
+    border: #fff 2px solid;
+    border-radius: 10px;
+    max-width: 100%;
+}
+
+
+
+.closeMap {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.ver-mas-container {
+    text-align: center;
+    /* Centra el botón en el contenedor */
+    padding: 20px;
+    margin-top: 60px;
+    /* Espacio alrededor del botón */
+}
+
+.boton-ver-mas {
+    margin-top: 20px;
+    /* Espacio adicional por encima del botón si es necesario */
+    padding: 10px 20px;
+    background-color: #123;
+    /* Color de fondo del botón */
+    border: none;
+    /* Remueve el borde del botón */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    color: white;
+    /* Texto blanco */
+    cursor: pointer;
+    /* Cursor tipo puntero */
+}
+
+.boton-ver-mas a {
+    text-decoration: none;
+    /* No subrayado */
+    color: white;
+    /* Texto blanco */
+    display: block;
+    /* Hace que el enlace ocupe todo el espacio del botón */
+}
+
+
+   
+ 
+/*Reviews estilos*/
+
+.container-reviews{
+  color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #090921;
+  border: 0.5em solid rgb(255, 255, 255); /* Añadimos un borde dorado */
+  border-radius: 1.5em; /* Suavizamos los bordes */
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.description {
+  text-align: center;
+  width: 43%;
+}
+
+.clientImage {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.clientImage span {
+  margin-left: 10px;
+}
+
+.clientImage img {
+  width: 40px;
+}
+
+.reviewSection {
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.reviewItem {
+  width: 300px;
+  padding: 10px;
+  margin: 1rem;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #10102a;
+  border: 1px solid #10102a;
+  transition: all .2s linear;
+}
+
+.reviewItem:hover {
+  border-color: aqua;
+  transform: scale(1.01);
+  background-color: #090921;
+  box-shadow: 0 0px 5px 0px #cbc0c0;
+}
+
+.top {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top ul {
+  display: flex;
+  list-style: none;
+}
+
+.top ul li {
+  padding-left: 4px;
+}
+
+article p {
+  font-size: 15px;
+  font-weight: 100;
+  margin-bottom: 1rem;
+  font-family: system-ui;
+}
+
+
+@media screen and (max-width:700px) {
+  .container {
+      height: auto;
+  }
+
+  .description {
+      width: 90%;
+  }
+}
+
+@media screen and (max-width:375px) {
+  .reviewSection {
+      padding: 0;
+  }
+
+  .reviewItem {
+      width: 100%;
+  }
+
+  .clientImage {
+      margin-bottom: 0.6rem;
+  }
+
+  .top {
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+  }
+}

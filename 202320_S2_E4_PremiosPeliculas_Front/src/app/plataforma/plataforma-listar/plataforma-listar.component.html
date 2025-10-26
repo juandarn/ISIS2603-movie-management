@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Aquí va tu contenido de la etiqueta <head> -->
+</head>
+
+<body style="margin: 60px;">
+
+<div class="row opciones justify-content-center">
+  <h2 class="col-lg-8 col-md-8 col-8 mb-2  text-start">Todas las plataformas</h2>
+  <div class="col-lg-4 col-md-4 col-4 mb-2 d-flex justify-content-center align-items-center">
+    <div class="dropdown text-center">
+      <button class="btn btn-azul-oscuro dropdown-toggle" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Ordenar
+      </button>
+      <ul class="dropdown-menu dropdown-oscuro">
+        <li>
+          <a class="dropdown-item" (click)="getPlataformas()">Todos</a>
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="getPlataformasAlfabeticamente()">A-Z</a>
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="getPlataformasAntiAlfabeticamente()">Z-A</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 row-cols-lg-5">
+  <ng-container *ngFor="let plataforma of plataformas | paginate: { itemsPerPage: itemsPerPage, currentPage: p, id: 'plataformas-pagination' }; let i = index">
+    <div class="col mb-4">
+      <div class="card p-2" [ngClass]="{'card-oscura': i % 2 === 0, 'card-clara': i % 2 !== 0}">
+        <a [routerLink]="['/plataformas', plataforma.id]">
+          <img class="card-img-top" alt="{{ plataforma.nombre }}" src="{{plataforma.imagen}}"/>
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">{{ plataforma.nombre }}</h5>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div *ngIf = "selected">
+  <app-plataforma-detalle [plataformaDetail] = "selectedPlataforma"></app-plataforma-detalle>
+</div>
+<div class="row">
+  <div class="col-md-12 col-12 d-flex justify-content-center align-items-center">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <pagination-controls (pageChange)="p = $event" id='plataformas-pagination'  
+    previousLabel="Anterior"
+    nextLabel="Siguiente"></pagination-controls>
+  </div>
+</div>
+</body>
+</html>

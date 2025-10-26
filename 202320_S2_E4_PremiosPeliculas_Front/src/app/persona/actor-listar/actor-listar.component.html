@@ -1,0 +1,86 @@
+<div *ngIf="!isHomePage" class="personas-header">
+  <h1>Actores</h1>
+  <div class="imagen-header"></div>
+</div>
+
+<div class="container text-center">
+  <div class="row justify-content-md-center text-light" *ngIf="!isHomePage">
+    <div class="col-auto g-6">
+      <nav class="navbar rounded p-3" style="background: #123">
+        <div class="row g-3 align-items-cente text-light">
+          <div class="col-auto">
+            <label for="Orden" class="col-form-label">Orden:</label>
+          </div>
+          <div class="col-auto">
+            <select
+              class="form-select"
+              aria-label="Orden"
+              (change)="cambiarOrden($event)"
+            >
+              <option value="A-Z" selected>A-Z</option>
+              <option value="Z-A">Z-A</option>
+            </select>
+          </div>
+          <div class="col-auto">
+            <label for="Nacionalidades" class="col-form-label"
+              >Nacionalidades:</label
+            >
+          </div>
+          <div class="col-auto">
+            <select
+              class="form-select"
+              aria-label="Nacionalidades"
+              (change)="cambiarNacionalidades($event)"
+            >
+              <option value="Todas" selected>Todas</option>
+              <option *ngFor="let i of nacionalidadesUnicas" value="{{ i }}">
+                {{ i }}
+              </option>
+            </select>
+          </div>
+          <div class="col-auto">
+            <label for="customRange2" class="col-form-label text-break"
+              >Número de Peliculas</label
+            >
+          </div>
+          <div class="col-auto">
+            <input
+              *ngIf="numlimitesPeliculas.length != 0"
+              type="range"
+              class="form-range align-middle"
+              min="{{ numlimitesPeliculas[0] }}"
+              max="{{ numlimitesPeliculas[1] }}"
+              step="1"
+              id="customRange2"
+              (change)="cambiarNumPeli($event)"
+            />
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <br />
+  <div class="row row-cols-md-6 g-4">
+    <div
+      class="col"
+      *ngFor="let i of isHomePage ? actores.slice(0, 6) : actores"
+    >
+      <div
+        class="card DataPerson h-100"
+        [routerLink]="isHomePage ? '/' : '/personas/' + i.id"
+        style="background-color: var(--rich-black-fogra-29)"
+      >
+        <img src="{{ i.imagen }}" class="card-img-top rounded" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title text-light">{{ i.nombre }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ver-mas-container" *ngIf="isHomePage">
+  <button class="boton-ver-mas">
+    <a routerLink="/personas/actores/listar">Ver más</a>
+  </button>
+</div>

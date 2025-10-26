@@ -1,0 +1,123 @@
+<div class="container-fluid">
+  <div  class = "row">
+    <div class="col-12">
+      <p class="h3 p-3 text.center">{{peliculaDetail.nombre}}</p>
+    </div>
+  </div>
+
+  
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center align-items-center">
+      <div class="thumb">
+        <img
+          class="img-fluid thumbnail rounded-start"
+          src="{{peliculaDetail.imagen}}"
+          alt="{{peliculaDetail.nombre}}"
+        />
+      </div>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="col-12">
+        <p class="h3 p-3" >Información</p>
+      </div>
+
+      <div class="col rounded border-primary">
+        <dl>
+          <dt>Nombre</dt>
+          <dd>{{peliculaDetail.nombre}}</dd>
+          <hr />
+          <dt>Pais</dt>
+          <dd>{{ peliculaDetail.pais }}</dd>
+          <hr />
+          <dt>Duración</dt>
+          <dd>{{ peliculaDetail.duracion }}</dd>
+          <hr />
+          <dt >Idioma original</dt>
+          <dd class="caption">{{ peliculaDetail.idiomaOriginal }}</dd>
+          <hr />
+          <dt >Fecha estreno</dt>
+          <dd>{{ peliculaDetail.fechaEstreno }}</dd>
+          <hr />
+          <dt >Link Trailer</dt>
+          <dd><a href="{{ peliculaDetail.linkTrailer }}">{{ peliculaDetail.linkTrailer }}</a></dd>
+          <hr />
+          <dt >Premiaciones </dt>
+          <dd *ngFor="let premiacion of peliculaDetail.premiaciones"><a routerLink="/premiacion/{{premiacion.id}}">{{ premiacion.categoria }}</a></dd>
+          <hr />
+          <dt >Premiaciones ganadas </dt>
+          <dd *ngFor="let premiacionGanada of peliculaDetail.premiacionesGanadas"><a routerLink="/premiacion/{{premiacionGanada.id}}">{{ premiacionGanada.categoria }}</a></dd>
+          <hr />
+          <dt >Plataformas </dt>
+          <dd *ngFor="let plataforma of peliculaDetail.plataformas">
+            <a routerLink="/plataformas/{{plataforma.id}}">{{ plataforma.nombre }}</a></dd>
+            <hr />
+          <dt>Generos </dt>
+          <dd *ngFor="let genero of peliculaDetail.generos"><a routerLink="/generos/{{genero.id}}">{{ genero.nombre }}</a></dd>
+          <hr />
+        </dl>
+      </div>
+    </div>
+
+   <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-12">
+          <p class="h3 p-3" >Elenco</p>
+        </div>
+      </div>
+      <div class = "row">
+          <div *ngFor="let p of peliculaDetail.personas" class="col-2 mb-3 mt-3">
+            <div class="premiaciones-list" routerLink="/personas/{{p.id}}">
+              <div class="card-container">
+                <div class="card" >
+                  <div class="card-front">
+                    <div class="card-image" [ngSwitch]="p.imagen">
+                      <img *ngSwitchDefault class="image" src="{{p.imagen}}" alt="Imagen por defecto">
+                    </div>
+                    <div class="card-content">
+                      <h2 class="card-title">Nombre : {{ p.nombre }}</h2>
+                    </div>
+                  </div>
+                  <div  class="card-back">
+                    <div class="card-back-content">
+                      <h3 class="card-back-title">Nacionalidad</h3>
+                      <p class="card-back-text">{{p.nacionalidad }}</p>
+                      <h3 class="card-back-title">Rol</h3>
+                      <p class="card-back-text">{{p.rol }}</p>
+                      <h3 class="card-back-title"></h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-12">
+        </div>
+      </div>
+      <app-resenia-listar [resenias]="peliculaDetail.resenias"></app-resenia-listar>
+
+              
+
+    
+
+            </div>
+          </div>
+        </div>
+        
+          
+
+  
+
+
+
+

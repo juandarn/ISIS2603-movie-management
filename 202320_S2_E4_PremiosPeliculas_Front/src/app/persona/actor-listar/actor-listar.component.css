@@ -1,0 +1,47 @@
+.ver-mas-container {
+    text-align: center;
+    /* Centra el botón en el contenedor */
+    padding: 20px;
+    /* Espacio alrededor del botón */
+}
+
+.boton-ver-mas {
+    margin-top: 20px;
+    /* Espacio adicional por encima del botón si es necesario */
+    padding: 10px 20px;
+    background-color: #123;
+    /* Color de fondo del botón */
+    border: none;
+    /* Remueve el borde del botón */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    color: white;
+    /* Texto blanco */
+    cursor: pointer;
+    /* Cursor tipo puntero */
+}
+
+.boton-ver-mas a {
+    text-decoration: none;
+    /* No subrayado */
+    color: white;
+    /* Texto blanco */
+    display: block;
+    /* Hace que el enlace ocupe todo el espacio del botón */
+}
+
+.personas-header{
+    background-color: rgb(19, 23, 32);
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.personas-header h1{
+    font-size: 4em;
+    font-weight: bold;
+    
+}
+

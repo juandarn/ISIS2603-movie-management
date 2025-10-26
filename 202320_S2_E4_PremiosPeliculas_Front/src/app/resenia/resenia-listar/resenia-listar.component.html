@@ -1,0 +1,42 @@
+<div class="row opciones">
+  <h2 style="color: white;">Reseñas</h2>
+  <div class="col-lg-2 col-md-2 col-12 mb-2 d-flex" style="color: white;">
+    <div class="dropdown d-flex align-items-center justify-content-center text-center">
+      <button class="btn btn-azul-oscuro dropdown-toggle" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Ordenar
+      </button>
+      <ul class="dropdown-menu dropdown-oscuro">
+        <li>
+          <a class="dropdown-item" (click)="getResenias()">Todos</a>
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="getReseniasAlfabeticamente()">Ascendente</a>
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="getReseniasAntiAlfabeticamente()">Descendente</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+<div class="container mt-2">
+  <div *ngFor="let o of resenias | paginate: { itemsPerPage: itemsPerPage, currentPage: p, id: 'resenias-pagination' }; let i = index" class="card mb-3">
+    <div class="card-header">
+      <strong>{{o.cinefilo.nombre}}</strong> <br><strong>{{ o.clasificacion }}/10</strong> - {{o.fecha_estreno}}
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{ o.texto }}</p>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12 col-12 d-flex justify-content-center align-items-center">
+      <pagination-controls (pageChange)="p = $event" id="resenias-pagination"  
+      previousLabel="Anterior"
+      nextLabel="Siguiente"></pagination-controls>
+    </div>
+  </div>
+</div>

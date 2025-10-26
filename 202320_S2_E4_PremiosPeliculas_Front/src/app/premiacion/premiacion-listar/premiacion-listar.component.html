@@ -1,0 +1,116 @@
+
+  <div *ngIf="!isHomePage" class="premiaciones-header">
+    <h1>Premiaciones</h1>
+  </div>
+    <div class="filters-container" *ngIf="!isHomePage">
+        <!-- Filtro de Categoría -->
+        <div class="search-bar">
+            <label for="order-select">Ordenar por categoría:</label>
+            <select id="order-select" #select (change)="setFiltroCategoria(select.value)">
+                <option value="">Todas las categorías</option>
+                <option value="Mejor película">Mejor película</option>
+                <option value="Mejor director">Mejor director</option>
+                <option value="Mejor actor">Mejor actor</option>
+                <option value="Mejor actriz">Mejor actriz</option>
+                <option value="Mejor guión original">Mejor guión original</option>
+            </select>
+        </div>
+
+        <!-- Filtro de Ganador -->
+        <div class="filter-winner">
+          <label for="ganador-select">Ganador es Película:</label>
+          <select id="ganador-select" #ganadorSelect (change)="setGanadorFilter(ganadorSelect.value)">
+            <option value="ambos">Todos</option>
+            <option value="true">Sí</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+
+
+        <div class="search-bar">
+          <label for="organizacion-select">Organización:</label>
+          <select id="organizacion-select" #organizacionSelect (change)="setFiltroOrganizacion(organizacionSelect.value)">
+            <option value="">Todas las organizaciones</option>
+            <option value="Los Oscar">Los Oscar</option>
+            <option value="Globo de Oro">Globo de Oro</option>
+            <option value="Festival de Cine de Sundance">Festival de Cine de Sundance</option>
+            <option value="Festival de Cannes">Festival de Cannes</option>
+            <option value="Festival Internacional de Cine de El Cairo">Festival Internacional de Cine de El Cairo</option>
+            <option value="Festival Internacional de Cine de la India">Festival Internacional de Cine de la India</option>
+            <option value="Festival Internacional de Cine de Karlovy Vary">Festival Internacional de Cine de Karlovy Vary</option>
+            <option value="Festival Internacional de Cine de Locarno">Festival Internacional de Cine de Locarno</option>
+            <option value="Festival Internacional de Cine de Mar del Plata">Festival Internacional de Cine de Mar del Plata</option>
+            <option value="Festival Internacional de Cine de Montreal">Festival Internacional de Cine de Montreal</option>
+          </select>
+        </div>
+        
+        <button class="boton-mapa" (click)="scrollToMap()">Ver Mapa</button>
+
+    </div>
+  
+
+
+
+
+
+    <div class="premiaciones-list">
+      <div *ngFor="let p of (isHomePage ? premiacionesFiltradas.slice(0, 6) : premiacionesFiltradas)" class="card-container" (click)="onSelected(p)" >
+        <div class="card" >
+          <div class="card-front">
+            <div class="card-image" [ngSwitch]="p.categoria">
+              <img *ngSwitchCase="'Mejor película'" class="image" src="../assets/images/premiaciones/mejor_pelicula.png" alt="Mejor película">
+              <img *ngSwitchCase="'Mejor director'" class="image" src="../assets/images/premiaciones/mejor_director.png" alt="Mejor director">
+              <img *ngSwitchCase="'Mejor actor'" class="image" src="../assets/images/premiaciones/mejor_actor.png" alt="Mejor actor">
+              <img *ngSwitchCase="'Mejor actriz'" class="image" src="../assets/images/premiaciones/mejor_actriz.png" alt="Mejor actriz">
+              <img *ngSwitchCase="'Mejor guión original'" src="../assets/images/premiaciones/mejor_guion.png" class="image"  alt="Mejor guión">
+              <!-- Puedes agregar más casos según las categorías que tengas -->
+              <img *ngSwitchDefault class="image" src="../assets/images/premiaciones/premiacion.png" alt="Imagen por defecto">
+            </div>
+            <div class="card-content">
+              <h2 class="card-title">Categoria : {{ p.categoria }}</h2>
+              <p class="card-footer" *ngIf="p.peliculaGanadora; else noWinner">
+                Ganadora: {{ p.peliculaGanadora.nombre }}
+              </p>
+              <ng-template #noWinner>
+                <p class="card-footer">El ganador de esta premiación no es la película.</p>
+              </ng-template>
+            </div>
+          </div>
+          <div  class="card-back">
+            <div class="card-back-content">
+              <h3 class="card-back-title">Historia del Premio</h3>
+              <p class="card-back-text">{{ p.historia }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="ver-mas-container" *ngIf="isHomePage">
+      <button class="boton-ver-mas"><a routerLink="/premiacion/list">Ver más</a></button>
+    </div>
+    
+
+
+    <div class="modal-backdrop" *ngIf="isModalOpen && !isHomePage" (click)="closeModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <app-premiacion-detail [premiacionDetail]="premiacionSeleccionada"></app-premiacion-detail>
+      </div>
+    </div>
+
+    
+
+    <div *ngIf="!isHomePage" id="mapa" class="map-container">
+      <div class="map-header">
+        <h2>Mapa de los premios</h2>
+      </div>
+      <div class="map-content">
+        <img [src]="mapImageUrl" alt="Bing Map Image">
+      </div>
+
+    </div>
+
+
+

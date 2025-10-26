@@ -1,0 +1,407 @@
+{
+	"info": {
+		"_postman_id": "2d3a9f90-4cb8-4f2c-a628-1a12b31309b9",
+		"name": "Organizacion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20955514",
+		"_collection_link": "https://orange-zodiac-989531.postman.co/workspace/moviesWorkSpace~95b44ad5-2d9b-4c32-b792-3f2712644db4/collection/20955514-2d3a9f90-4cb8-4f2c-a628-1a12b31309b9?action=share&source=collection_link&creator=20955514"
+	},
+	"item": [
+		{
+			"name": "Create Organizacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"organizacion_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Premios Óscar\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones"
+					]
+				},
+				"description": "Crea una nueva organizacion. El Id es inicializado por la BD y se debe ver en la respuesta.  \nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 201**"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Organizacion2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"organizacion_id2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Globo de Oro\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones"
+					]
+				},
+				"description": "Crea una nueva organizacion. El Id es inicializado por la BD y se debe ver en la respuesta.  \nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 201**"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Organizaciones",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of organizaciones > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones"
+					]
+				},
+				"description": "Consulta todas las organizaciones de la aplicacion.  \nLa petición no tiene cuerpo.\n\nPara la prueba, se verifica que el conjunto de organizaciones en la respuesta tenga mas de uno.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Organizacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones/{{organizacion_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones",
+						"{{organizacion_id}}"
+					]
+				},
+				"description": "Consulta la organizaciones que esta representada con ese id.  \nLa petición no tiene cuerpo.\n\nPara la prueba, se verifica que la organizacion exista.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Organizacion no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No existe una organizacion con ese Id\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones",
+						"0"
+					]
+				},
+				"description": "Intenta consultar una organizacion que no existe  \nLa petición no tiene cuerpo.\n\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Put Organizacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\" : \"Festival de Cine de Sundance\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones/{{organizacion_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones",
+						"{{organizacion_id}}"
+					]
+				},
+				"description": "Actualiza una organizacion existente.  \nse envía el Id en la URL de la petición.  \nCódigo http esperado: 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Put Organizacion no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No existe una organizacion con ese Id\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\" : \"Festival de Cine de Sundance\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones",
+						"0"
+					]
+				},
+				"description": "Actualiza una organizacion no existente.\n\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /organizaciones/0 no existe.\".  \nCódigo http esperado: 404"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Organizacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones/{{organizacion_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones",
+						"{{organizacion_id}}"
+					]
+				},
+				"description": "Borra una organizacion. Se envía el id de la organizacion creada anteriormente.  \nCódigo HTTP esperado: 204"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Organizacion2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones/{{organizacion_id2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones",
+						"{{organizacion_id2}}"
+					]
+				},
+				"description": "Borra una organizacion. Se envía el id de la organizacion creada anteriormente.  \nCódigo HTTP esperado: 204"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Organizacion no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No existe una organizacion con ese Id\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/organizaciones/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"organizaciones",
+						"0"
+					]
+				},
+				"description": "Borra una organizacion que no existe en la aplicación.  \nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /organizaciones/0 no existe.\".  \nCódigo http esperado: 404"
+			},
+			"response": []
+		}
+	]
+}

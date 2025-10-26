@@ -1,0 +1,45 @@
+<style>
+  .detalle-premio {
+    overflow-x: auto; /* Permite desplazarse horizontalmente si es necesario */
+  }
+</style>
+
+
+<div class="container">
+  <div class="row">
+    <!-- Lista de premios -->
+    <div class="col-6">
+      <h2 class="text-center">Premios</h2>
+      <table class="table">
+        <caption>Tabla de premios</caption>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">País</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of premios" (click)="onSelected(p)">
+            <th scope="row">{{p.id}}</th>
+            <td>{{p.fecha}}</td>
+            <td>{{p.pais}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Detalle del premio seleccionado -->
+    <!-- <div class="col-6" *ngIf="premioSeleccionado">
+      <app-premio-detalle [premioDetalle]="premioSeleccionado"></app-premio-detalle>
+    </div> -->
+
+     <div class="col-md-6" *ngIf="premioSeleccionado">
+      <div class="detalle-premio">
+        <h2>Detalle Premio</h2>
+        <div class="col-3" *ngIf="premioSeleccionado">
+          <app-premio-detalle [premioDetalle]="premioSeleccionado"></app-premio-detalle>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
