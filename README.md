@@ -1,7 +1,7 @@
 # 🎬 CineConnect – Movie Management App (ISIS2603)
 
 > Academic project developed for the course **Desarrollo de Software en Equipo (ISIS2603)**  
-> Universidad de los Andes – 2025  
+> Universidad de los Andes – 2023  
 > Technologies: **Java Spring Boot + Angular + Jenkins + SonarQube + GitHub Actions**
 
 ---
@@ -87,3 +87,4 @@ Open 👉 `http://localhost:4200`
 API runs on 👉 `http://localhost:8080`
 
 ---
+
